@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  TirocinioiOSApp
+//  PillRecogNetApp
 //
 //  Created by Matteo Del Vecchio on 17/10/17.
 //  Copyright © 2017 Matteo Del Vecchio. All rights reserved.

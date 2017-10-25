@@ -13,10 +13,14 @@
 		957C65901F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 957C658E1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld */; };
 		957C65921F9612C700A2F972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 957C65911F9612C700A2F972 /* Assets.xcassets */; };
 		957C65951F9612C700A2F972 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C65931F9612C700A2F972 /* LaunchScreen.storyboard */; };
+		957C659D1F96168700A2F972 /* DataListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C659C1F96168700A2F972 /* DataListTableViewController.swift */; };
+		95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */; };
+		95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */; };
+		95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110641FAC12CD00FEBAD1 /* PillLabelManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		957C65841F9612C700A2F972 /* TirocinioiOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TirocinioiOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		957C65841F9612C700A2F972 /* PillRecogNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillRecogNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C65871F9612C700A2F972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		957C65891F9612C700A2F972 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		957C658C1F9612C700A2F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -24,6 +28,10 @@
 		957C65911F9612C700A2F972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		957C65941F9612C700A2F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		957C65961F9612C700A2F972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		957C659C1F96168700A2F972 /* DataListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListTableViewController.swift; sourceTree = "<group>"; };
+		95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillRecogNet.swift; sourceTree = "<group>"; };
+		95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPSImage+Extensions.swift"; sourceTree = "<group>"; };
+		95C110641FAC12CD00FEBAD1 /* PillLabelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillLabelManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +48,7 @@
 		957C657B1F9612C700A2F972 = {
 			isa = PBXGroup;
 			children = (
-				957C65861F9612C700A2F972 /* TirocinioiOSApp */,
+				957C65861F9612C700A2F972 /* PillRecogNetApp */,
 				957C65851F9612C700A2F972 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,14 +56,15 @@
 		957C65851F9612C700A2F972 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				957C65841F9612C700A2F972 /* TirocinioiOSApp.app */,
+				957C65841F9612C700A2F972 /* PillRecogNetApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		957C65861F9612C700A2F972 /* TirocinioiOSApp */ = {
+		957C65861F9612C700A2F972 /* PillRecogNetApp */ = {
 			isa = PBXGroup;
 			children = (
+				95C1105F1FAB8A6000FEBAD1 /* Neural Network */,
 				957C65871F9612C700A2F972 /* AppDelegate.swift */,
 				957C65891F9612C700A2F972 /* ViewController.swift */,
 				957C658B1F9612C700A2F972 /* Main.storyboard */,
@@ -63,16 +72,27 @@
 				957C65931F9612C700A2F972 /* LaunchScreen.storyboard */,
 				957C65961F9612C700A2F972 /* Info.plist */,
 				957C658E1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld */,
+				957C659C1F96168700A2F972 /* DataListTableViewController.swift */,
 			);
-			path = TirocinioiOSApp;
+			path = PillRecogNetApp;
+			sourceTree = "<group>";
+		};
+		95C1105F1FAB8A6000FEBAD1 /* Neural Network */ = {
+			isa = PBXGroup;
+			children = (
+				95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */,
+				95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */,
+				95C110641FAC12CD00FEBAD1 /* PillLabelManager.swift */,
+			);
+			path = "Neural Network";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		957C65831F9612C700A2F972 /* TirocinioiOSApp */ = {
+		957C65831F9612C700A2F972 /* PillRecogNetApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 957C65991F9612C700A2F972 /* Build configuration list for PBXNativeTarget "TirocinioiOSApp" */;
+			buildConfigurationList = 957C65991F9612C700A2F972 /* Build configuration list for PBXNativeTarget "PillRecogNetApp" */;
 			buildPhases = (
 				957C65801F9612C700A2F972 /* Sources */,
 				957C65811F9612C700A2F972 /* Frameworks */,
@@ -82,9 +102,9 @@
 			);
 			dependencies = (
 			);
-			name = TirocinioiOSApp;
+			name = PillRecogNetApp;
 			productName = TirocinioiOSApp;
-			productReference = 957C65841F9612C700A2F972 /* TirocinioiOSApp.app */;
+			productReference = 957C65841F9612C700A2F972 /* PillRecogNetApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -103,7 +123,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 957C657F1F9612C700A2F972 /* Build configuration list for PBXProject "TirocinioiOSApp" */;
+			buildConfigurationList = 957C657F1F9612C700A2F972 /* Build configuration list for PBXProject "PillRecogNetApp" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -116,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				957C65831F9612C700A2F972 /* TirocinioiOSApp */,
+				957C65831F9612C700A2F972 /* PillRecogNetApp */,
 			);
 		};
 /* End PBXProject section */
@@ -139,9 +159,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */,
+				95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */,
 				957C658A1F9612C700A2F972 /* ViewController.swift in Sources */,
+				95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */,
 				957C65901F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld in Sources */,
 				957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */,
+				957C659D1F96168700A2F972 /* DataListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,9 +304,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SP3RMALFFA;
-				INFOPLIST_FILE = TirocinioiOSApp/Info.plist;
+				INFOPLIST_FILE = PillRecogNetApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.matteodv.TirocinioiOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.matteodv.PillRecogNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -295,9 +320,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SP3RMALFFA;
-				INFOPLIST_FILE = TirocinioiOSApp/Info.plist;
+				INFOPLIST_FILE = PillRecogNetApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.matteodv.TirocinioiOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.matteodv.PillRecogNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,7 +333,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		957C657F1F9612C700A2F972 /* Build configuration list for PBXProject "TirocinioiOSApp" */ = {
+		957C657F1F9612C700A2F972 /* Build configuration list for PBXProject "PillRecogNetApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				957C65971F9612C700A2F972 /* Debug */,
@@ -316,7 +342,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		957C65991F9612C700A2F972 /* Build configuration list for PBXNativeTarget "TirocinioiOSApp" */ = {
+		957C65991F9612C700A2F972 /* Build configuration list for PBXNativeTarget "PillRecogNetApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				957C659A1F9612C700A2F972 /* Debug */,

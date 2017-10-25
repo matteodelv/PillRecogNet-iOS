@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  TirocinioiOSApp
+//  PillRecogNetApp
 //
 //  Created by Matteo Del Vecchio on 17/10/17.
 //  Copyright © 2017 Matteo Del Vecchio. All rights reserved.
@@ -18,6 +18,10 @@ class ViewController: UIViewController {
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {
+		
 	}
 
 
