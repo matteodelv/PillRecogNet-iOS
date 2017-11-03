@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		953ECE881FACBBA300278093 /* PillRecogNetApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE861FACBBA300278093 /* PillRecogNetApp.xcdatamodeld */; };
+		953ECE8D1FACBBBB00278093 /* Classification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE891FACBBBB00278093 /* Classification+CoreDataClass.swift */; };
+		953ECE8E1FACBBBB00278093 /* Classification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE8A1FACBBBB00278093 /* Classification+CoreDataProperties.swift */; };
+		953ECE8F1FACBBBB00278093 /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE8B1FACBBBB00278093 /* Photo+CoreDataClass.swift */; };
+		953ECE901FACBBBB00278093 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE8C1FACBBBB00278093 /* Photo+CoreDataProperties.swift */; };
 		957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65871F9612C700A2F972 /* AppDelegate.swift */; };
 		957C658A1F9612C700A2F972 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65891F9612C700A2F972 /* ViewController.swift */; };
 		957C658D1F9612C700A2F972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C658B1F9612C700A2F972 /* Main.storyboard */; };
-		957C65901F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 957C658E1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld */; };
 		957C65921F9612C700A2F972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 957C65911F9612C700A2F972 /* Assets.xcassets */; };
 		957C65951F9612C700A2F972 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C65931F9612C700A2F972 /* LaunchScreen.storyboard */; };
 		957C659D1F96168700A2F972 /* DataListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C659C1F96168700A2F972 /* DataListTableViewController.swift */; };
@@ -20,11 +24,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		953ECE871FACBBA300278093 /* PillRecogNetApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PillRecogNetApp.xcdatamodel; sourceTree = "<group>"; };
+		953ECE891FACBBBB00278093 /* Classification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Classification+CoreDataClass.swift"; sourceTree = "<group>"; };
+		953ECE8A1FACBBBB00278093 /* Classification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Classification+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		953ECE8B1FACBBBB00278093 /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		953ECE8C1FACBBBB00278093 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		957C65841F9612C700A2F972 /* PillRecogNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillRecogNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C65871F9612C700A2F972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		957C65891F9612C700A2F972 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		957C658C1F9612C700A2F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		957C658F1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TirocinioiOSApp.xcdatamodel; sourceTree = "<group>"; };
 		957C65911F9612C700A2F972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		957C65941F9612C700A2F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		957C65961F9612C700A2F972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +53,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		953ECE851FACBB2F00278093 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				953ECE891FACBBBB00278093 /* Classification+CoreDataClass.swift */,
+				953ECE8A1FACBBBB00278093 /* Classification+CoreDataProperties.swift */,
+				953ECE8B1FACBBBB00278093 /* Photo+CoreDataClass.swift */,
+				953ECE8C1FACBBBB00278093 /* Photo+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		957C657B1F9612C700A2F972 = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +83,15 @@
 		957C65861F9612C700A2F972 /* PillRecogNetApp */ = {
 			isa = PBXGroup;
 			children = (
+				953ECE851FACBB2F00278093 /* Model */,
 				95C1105F1FAB8A6000FEBAD1 /* Neural Network */,
 				957C65871F9612C700A2F972 /* AppDelegate.swift */,
 				957C65891F9612C700A2F972 /* ViewController.swift */,
 				957C658B1F9612C700A2F972 /* Main.storyboard */,
 				957C65911F9612C700A2F972 /* Assets.xcassets */,
 				957C65931F9612C700A2F972 /* LaunchScreen.storyboard */,
+				953ECE861FACBBA300278093 /* PillRecogNetApp.xcdatamodeld */,
 				957C65961F9612C700A2F972 /* Info.plist */,
-				957C658E1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld */,
 				957C659C1F96168700A2F972 /* DataListTableViewController.swift */,
 			);
 			path = PillRecogNetApp;
@@ -159,12 +179,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				953ECE8F1FACBBBB00278093 /* Photo+CoreDataClass.swift in Sources */,
 				95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */,
+				953ECE8D1FACBBBB00278093 /* Classification+CoreDataClass.swift in Sources */,
 				95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */,
 				957C658A1F9612C700A2F972 /* ViewController.swift in Sources */,
 				95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */,
-				957C65901F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld in Sources */,
 				957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */,
+				953ECE8E1FACBBBB00278093 /* Classification+CoreDataProperties.swift in Sources */,
+				953ECE901FACBBBB00278093 /* Photo+CoreDataProperties.swift in Sources */,
+				953ECE881FACBBA300278093 /* PillRecogNetApp.xcdatamodeld in Sources */,
 				957C659D1F96168700A2F972 /* DataListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,13 +378,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		957C658E1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodeld */ = {
+		953ECE861FACBBA300278093 /* PillRecogNetApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				957C658F1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodel */,
+				953ECE871FACBBA300278093 /* PillRecogNetApp.xcdatamodel */,
 			);
-			currentVersion = 957C658F1F9612C700A2F972 /* TirocinioiOSApp.xcdatamodel */;
-			path = TirocinioiOSApp.xcdatamodeld;
+			currentVersion = 953ECE871FACBBA300278093 /* PillRecogNetApp.xcdatamodel */;
+			path = PillRecogNetApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
