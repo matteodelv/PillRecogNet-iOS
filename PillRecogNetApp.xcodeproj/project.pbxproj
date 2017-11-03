@@ -123,7 +123,7 @@
 			dependencies = (
 			);
 			name = PillRecogNetApp;
-			productName = TirocinioiOSApp;
+			productName = PillRecogNetApp;
 			productReference = 957C65841F9612C700A2F972 /* PillRecogNetApp.app */;
 			productType = "com.apple.product-type.application";
 		};
