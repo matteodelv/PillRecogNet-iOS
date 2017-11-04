@@ -177,7 +177,7 @@ public class PillRecogNet {
 		
 		do {
 			let customFunctionsLibrary = device.makeDefaultLibrary()!
-			let vggPreprocessing = customFunctionsLibrary.makeFunction(name: "vggImagePreprocessing")
+			let vggPreprocessing = customFunctionsLibrary.makeFunction(name: "removeRGBMean")
 			bgrPipeline = try device.makeComputePipelineState(function: vggPreprocessing!)
 		} catch {
 			fatalError("Errore durante l'inizializzazione del kernel per il preprocessing!")

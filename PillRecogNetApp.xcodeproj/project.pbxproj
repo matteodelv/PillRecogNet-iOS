@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951E526C1FAE181E00B53BF5 /* Preprocessing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 951E526B1FAE181E00B53BF5 /* Preprocessing.metal */; };
 		953ECE881FACBBA300278093 /* PillRecogNetApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE861FACBBA300278093 /* PillRecogNetApp.xcdatamodeld */; };
 		953ECE8D1FACBBBB00278093 /* Classification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE891FACBBBB00278093 /* Classification+CoreDataClass.swift */; };
 		953ECE8E1FACBBBB00278093 /* Classification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE8A1FACBBBB00278093 /* Classification+CoreDataProperties.swift */; };
@@ -14,7 +15,7 @@
 		953ECE901FACBBBB00278093 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE8C1FACBBBB00278093 /* Photo+CoreDataProperties.swift */; };
 		953ECE921FACBFBF00278093 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953ECE911FACBFBF00278093 /* CoreDataStack.swift */; };
 		957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65871F9612C700A2F972 /* AppDelegate.swift */; };
-		957C658A1F9612C700A2F972 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65891F9612C700A2F972 /* ViewController.swift */; };
+		957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65891F9612C700A2F972 /* TakePhotoViewController.swift */; };
 		957C658D1F9612C700A2F972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C658B1F9612C700A2F972 /* Main.storyboard */; };
 		957C65921F9612C700A2F972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 957C65911F9612C700A2F972 /* Assets.xcassets */; };
 		957C65951F9612C700A2F972 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C65931F9612C700A2F972 /* LaunchScreen.storyboard */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		951E526B1FAE181E00B53BF5 /* Preprocessing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Preprocessing.metal; sourceTree = "<group>"; };
 		953ECE871FACBBA300278093 /* PillRecogNetApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PillRecogNetApp.xcdatamodel; sourceTree = "<group>"; };
 		953ECE891FACBBBB00278093 /* Classification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Classification+CoreDataClass.swift"; sourceTree = "<group>"; };
 		953ECE8A1FACBBBB00278093 /* Classification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Classification+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -33,7 +35,7 @@
 		953ECE911FACBFBF00278093 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		957C65841F9612C700A2F972 /* PillRecogNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillRecogNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C65871F9612C700A2F972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		957C65891F9612C700A2F972 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		957C65891F9612C700A2F972 /* TakePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePhotoViewController.swift; sourceTree = "<group>"; };
 		957C658C1F9612C700A2F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		957C65911F9612C700A2F972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		957C65941F9612C700A2F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,7 +91,7 @@
 				95C1105F1FAB8A6000FEBAD1 /* Neural Network */,
 				957C65871F9612C700A2F972 /* AppDelegate.swift */,
 				953ECE911FACBFBF00278093 /* CoreDataStack.swift */,
-				957C65891F9612C700A2F972 /* ViewController.swift */,
+				957C65891F9612C700A2F972 /* TakePhotoViewController.swift */,
 				957C659C1F96168700A2F972 /* DataListTableViewController.swift */,
 				957C658B1F9612C700A2F972 /* Main.storyboard */,
 				957C65911F9612C700A2F972 /* Assets.xcassets */,
@@ -106,6 +108,7 @@
 				95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */,
 				95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */,
 				95C110641FAC12CD00FEBAD1 /* PillLabelManager.swift */,
+				951E526B1FAE181E00B53BF5 /* Preprocessing.metal */,
 			);
 			path = "Neural Network";
 			sourceTree = "<group>";
@@ -187,13 +190,14 @@
 				953ECE8D1FACBBBB00278093 /* Classification+CoreDataClass.swift in Sources */,
 				953ECE921FACBFBF00278093 /* CoreDataStack.swift in Sources */,
 				95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */,
-				957C658A1F9612C700A2F972 /* ViewController.swift in Sources */,
+				957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */,
 				95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */,
 				957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */,
 				953ECE8E1FACBBBB00278093 /* Classification+CoreDataProperties.swift in Sources */,
 				953ECE901FACBBBB00278093 /* Photo+CoreDataProperties.swift in Sources */,
 				953ECE881FACBBA300278093 /* PillRecogNetApp.xcdatamodeld in Sources */,
 				957C659D1F96168700A2F972 /* DataListTableViewController.swift in Sources */,
+				951E526C1FAE181E00B53BF5 /* Preprocessing.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

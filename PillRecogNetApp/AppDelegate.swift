@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		_ = coreDataStack.mainContext
 		
-		guard let navigationController = window!.rootViewController as? UINavigationController, let takePhotoController = navigationController.topViewController as? ViewController else {
+		guard let navigationController = window!.rootViewController as? UINavigationController, let takePhotoController = navigationController.topViewController as? TakePhotoViewController else {
 			fatalError("Impossibile propagare lo stack Core Data al view controller principale.!")
 		}
 		takePhotoController.coreDataStack = coreDataStack

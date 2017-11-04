@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class TakePhotoViewController: UIViewController {
 	
 	var coreDataStack: CoreDataStack!
 
@@ -24,9 +24,12 @@ class ViewController: UIViewController {
 	}
 	
 	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {
-		
+		print("Done button pressed!")
 	}
 
+	@IBAction func takePhotoPressed(_ sender: UIButton) {
+		print("Take photo button pressed!")
+	}
 
 }
 
