@@ -15,38 +15,151 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TakePhotoViewController" customModule="PillRecogNetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQF-kc-qHE">
-                                <rect key="frame" x="16" y="266" width="343" height="135"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <state key="normal" title="Scatta Foto alla Pillola">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0t1-M7-t21" userLabel="Scatta Foto Button">
+                                <rect key="frame" x="16" y="16" width="343" height="80"/>
+                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="BOO-FU-JnC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="tintColor" red="0.80392156862745101" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="-25" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Scatta Foto" image="camera">
+                                    <color key="titleColor" red="0.80257161458333337" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="disabled" image="camera">
+                                    <color key="titleColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="takePhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DTH-6V-CBL"/>
+                                    <action selector="takePhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W1c-az-14U"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n69-0D-OOK" userLabel="Status Stack View">
+                                <rect key="frame" x="65" y="136" width="245" height="20.5"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Vn6-Kk-C1G">
+                                        <rect key="frame" x="0.0" y="0.5" width="20.5" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="752" verticalHuggingPriority="252" text="Caricamento Rete Neurale..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvm-NP-CbO">
+                                        <rect key="frame" x="30.5" y="0.0" width="214.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OUR-56-VvO" userLabel="Last Classification Stack View">
+                                <rect key="frame" x="16" y="193" width="343" height="90"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="l6W-7e-Hdi" userLabel="Thumbnail Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="36j-4d-zog"/>
+                                            <constraint firstAttribute="width" constant="90" id="S6B-zW-gYD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xon-Pe-XpL">
+                                        <rect key="frame" x="100" y="22" width="243" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSU-dC-kno">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgi-ta-VPS">
+                                                <rect key="frame" x="0.0" y="25.5" width="42" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VUH-qC-KyT" userLabel="Classifications Text View">
+                                <rect key="frame" x="16" y="293" width="343" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="HvQ-OD-Y5d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUE-u5-sSS" userLabel="How To Text View">
+                                <rect key="frame" x="16" y="428" width="343" height="115"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="dUr-40-pt9"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Una volta caricata la rete neurale, tocca ">
+                                        <attributes>
+                                            <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Scatta Foto">
+                                        <attributes>
+                                            <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content"> per classificare una pillola. Cerca di scattare un'immagine chiara e centrata, considerando anche che la luce potrebbe influenzare il riconoscimento. Potrai vedere il risultato qui sopra.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hUE-u5-sSS" firstAttribute="top" secondItem="VUH-qC-KyT" secondAttribute="bottom" constant="10" id="15d-ey-YdJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hUE-u5-sSS" secondAttribute="bottom" constant="16" id="2u1-Ti-ioG"/>
+                            <constraint firstItem="OUR-56-VvO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Dmq-KT-eID"/>
+                            <constraint firstItem="VUH-qC-KyT" firstAttribute="top" secondItem="OUR-56-VvO" secondAttribute="bottom" constant="10" id="Fc8-4O-SAC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OUR-56-VvO" secondAttribute="trailing" constant="16" id="Pur-6Z-rPr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hUE-u5-sSS" secondAttribute="trailing" constant="16" id="Xn6-Tr-yN3"/>
+                            <constraint firstItem="n69-0D-OOK" firstAttribute="top" secondItem="0t1-M7-t21" secondAttribute="bottom" constant="40" id="ak9-w4-KDB"/>
+                            <constraint firstItem="hUE-u5-sSS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="d9r-h0-nFs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n69-0D-OOK" secondAttribute="trailing" constant="65" id="hC9-nh-kIn"/>
+                            <constraint firstItem="0t1-M7-t21" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="hsT-Cw-Jg7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0t1-M7-t21" secondAttribute="trailing" constant="16" id="iG7-hE-ZbN"/>
+                            <constraint firstItem="VUH-qC-KyT" firstAttribute="width" secondItem="hUE-u5-sSS" secondAttribute="width" id="nxP-Pd-Kmh"/>
+                            <constraint firstItem="0t1-M7-t21" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sMG-Mf-B2k"/>
+                            <constraint firstItem="VUH-qC-KyT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="u33-ZD-GPz"/>
+                            <constraint firstItem="n69-0D-OOK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="65" id="vJ8-05-tvm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Gestione" id="T6l-ri-bMr">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="qHL-fg-R4C" kind="presentation" identifier="managementSegue" id="92w-PF-Po1"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Scatta Foto" id="6qY-QP-s0s"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bestMatchLabel" destination="zSU-dC-kno" id="tRC-Hw-ZMA"/>
+                        <outlet property="classificationsTextView" destination="VUH-qC-KyT" id="Zwh-v1-w9Y"/>
+                        <outlet property="dateLabel" destination="Cgi-ta-VPS" id="oua-yP-AEE"/>
+                        <outlet property="spinner" destination="Vn6-Kk-C1G" id="D8R-p6-JEc"/>
+                        <outlet property="statusLabel" destination="Qvm-NP-CbO" id="eQm-lo-oNe"/>
+                        <outlet property="takePictureButton" destination="0t1-M7-t21" id="43V-Ir-wcG"/>
+                        <outlet property="thumbnailImageView" destination="l6W-7e-Hdi" id="UrZ-FM-cCz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476" y="133.5832083958021"/>
+            <point key="canvasLocation" x="395.625" y="132.04225352112675"/>
         </scene>
         <!--Gestione Dati-->
         <scene sceneID="FDu-Cn-8fz">
@@ -89,14 +202,19 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="JTK-vC-IgU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wzE-y6-for">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="wzE-y6-for">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.31372549019607843" green="0.67843137254901964" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kin-dR-iQ3">
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Kin-dR-iQ3">
                         <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.31372549019607843" green="0.67843137254901964" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5bm-Iw-VSp"/>
@@ -125,4 +243,7 @@
             <point key="canvasLocation" x="1249.5999999999999" y="530.73463268365822"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="38" height="38"/>
+    </resources>
 </document>

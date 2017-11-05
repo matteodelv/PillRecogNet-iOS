@@ -20,6 +20,7 @@
 		957C65921F9612C700A2F972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 957C65911F9612C700A2F972 /* Assets.xcassets */; };
 		957C65951F9612C700A2F972 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C65931F9612C700A2F972 /* LaunchScreen.storyboard */; };
 		957C659D1F96168700A2F972 /* DataListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C659C1F96168700A2F972 /* DataListTableViewController.swift */; };
+		95B9D7301FAF570900300037 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */; };
 		95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */; };
 		95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */; };
 		95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110641FAC12CD00FEBAD1 /* PillLabelManager.swift */; };
@@ -41,6 +42,7 @@
 		957C65941F9612C700A2F972 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		957C65961F9612C700A2F972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957C659C1F96168700A2F972 /* DataListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListTableViewController.swift; sourceTree = "<group>"; };
+		95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillRecogNet.swift; sourceTree = "<group>"; };
 		95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPSImage+Extensions.swift"; sourceTree = "<group>"; };
 		95C110641FAC12CD00FEBAD1 /* PillLabelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillLabelManager.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				957C65931F9612C700A2F972 /* LaunchScreen.storyboard */,
 				953ECE861FACBBA300278093 /* PillRecogNetApp.xcdatamodeld */,
 				957C65961F9612C700A2F972 /* Info.plist */,
+				95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */,
 			);
 			path = PillRecogNetApp;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */,
 				953ECE8D1FACBBBB00278093 /* Classification+CoreDataClass.swift in Sources */,
 				953ECE921FACBFBF00278093 /* CoreDataStack.swift in Sources */,
+				95B9D7301FAF570900300037 /* UIAlertController+Extensions.swift in Sources */,
 				95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */,
 				957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */,
 				95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */,
