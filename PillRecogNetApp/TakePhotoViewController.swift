@@ -27,7 +27,7 @@ class TakePhotoViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.navigationController?.navigationBar.barStyle = .black // To set status bar
+		self.navigationController?.navigationBar.barStyle = .black // To set status bar style
 		spinner.startAnimating()
 		bestMatchLabel.text = nil
 		dateLabel.text = nil

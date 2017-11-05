@@ -12,6 +12,8 @@ class DataListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		self.navigationController?.navigationBar.barStyle = .black
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
