@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Scatta Foto-->
+        <!--Riconoscimento-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TakePhotoViewController" customModule="PillRecogNetApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,7 +43,7 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Vn6-Kk-C1G">
                                         <rect key="frame" x="0.0" y="0.5" width="20.5" height="20"/>
                                     </activityIndicatorView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="752" verticalHuggingPriority="252" text="Caricamento Rete Neurale..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvm-NP-CbO">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="752" verticalHuggingPriority="252" text="Caricamento Rete Neurale..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvm-NP-CbO">
                                         <rect key="frame" x="30.5" y="0.0" width="214.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -146,7 +146,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Scatta Foto" id="6qY-QP-s0s"/>
+                    <navigationItem key="navigationItem" title="Riconoscimento" id="6qY-QP-s0s"/>
                     <connections>
                         <outlet property="bestMatchLabel" destination="zSU-dC-kno" id="tRC-Hw-ZMA"/>
                         <outlet property="classificationsTextView" destination="VUH-qC-KyT" id="Zwh-v1-w9Y"/>

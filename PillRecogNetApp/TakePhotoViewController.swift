@@ -8,12 +8,15 @@
 
 import UIKit
 import CoreData
+import MetalKit
 import MetalPerformanceShaders
 
 class TakePhotoViewController: UIViewController {
 	
 	var coreDataStack: CoreDataStack!
-	var device: MTLDevice!
+	private var device: MTLDevice!
+	private var textureLoader: MTKTextureLoader!
+	private var network: PillRecogNet!
 	
 	@IBOutlet var takePictureButton: UIButton!
 	@IBOutlet var statusLabel: UILabel!
@@ -31,28 +34,48 @@ class TakePhotoViewController: UIViewController {
 		spinner.startAnimating()
 		bestMatchLabel.text = nil
 		dateLabel.text = nil
+		statusLabel.text = "Caricamento Rete Neurale..."
 		takePictureButton.layer.cornerRadius = 10.0
+		takePictureButton.isEnabled = false
 		
 		device = MTLCreateSystemDefaultDevice()
 		guard MPSSupportsMTLDevice(device) else {
-			self.present(UIAlertController.errorAlertWith(message: "Il dispositivo in uso non soddisfa i requisiti necessari per l'utilizzo dell'applicazione.", isFatal: true), animated: true)
+			self.present(UIAlertController.errorAlertWith(message: "Il dispositivo in uso non soddisfa i requisiti necessari per l'utilizzo dell'applicazione."), animated: true)
+			statusLabel.text = "Rete Neurale non supportata!"
 			return
+		}
+		
+		textureLoader = MTKTextureLoader(device: device)
+		
+		DispatchQueue.global().async {
+			self.network = PillRecogNet(device: self.device)
+			
+			DispatchQueue.main.async {
+				self.spinner.stopAnimating()
+				self.statusLabel.text = "Rete Neurale Pronta!"
+				self.takePictureButton.isEnabled = true
+				self.buttonStateChanged()
+			}
 		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		if takePictureButton.state == .disabled {
-			takePictureButton.tintColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
-		} else {
-			takePictureButton.tintColor = UIColor(red: 205.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
-		}
+		buttonStateChanged()
 	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	func buttonStateChanged() {
+		if takePictureButton.state == .disabled {
+			takePictureButton.tintColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+		} else {
+			takePictureButton.tintColor = UIColor(red: 205.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
+		}
 	}
 	
 	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {

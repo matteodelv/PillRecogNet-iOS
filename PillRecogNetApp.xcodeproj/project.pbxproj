@@ -44,6 +44,7 @@
 		95511FA41FAFD2390058CAD6 /* conv7_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 95511F861FAFD2390058CAD6 /* conv7_weights.bin */; };
 		95511FA51FAFD2390058CAD6 /* fc1_bias.bin in Resources */ = {isa = PBXBuildFile; fileRef = 95511F871FAFD2390058CAD6 /* fc1_bias.bin */; };
 		95511FA61FAFD2390058CAD6 /* conv13_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 95511F881FAFD2390058CAD6 /* conv13_weights.bin */; };
+		95511FA81FAFDA490058CAD6 /* pillLabels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 95511FA71FAFDA490058CAD6 /* pillLabels.txt */; };
 		957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65871F9612C700A2F972 /* AppDelegate.swift */; };
 		957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65891F9612C700A2F972 /* TakePhotoViewController.swift */; };
 		957C658D1F9612C700A2F972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C658B1F9612C700A2F972 /* Main.storyboard */; };
@@ -94,6 +95,7 @@
 		95511F861FAFD2390058CAD6 /* conv7_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = conv7_weights.bin; sourceTree = "<group>"; };
 		95511F871FAFD2390058CAD6 /* fc1_bias.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = fc1_bias.bin; sourceTree = "<group>"; };
 		95511F881FAFD2390058CAD6 /* conv13_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = conv13_weights.bin; sourceTree = "<group>"; };
+		95511FA71FAFDA490058CAD6 /* pillLabels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pillLabels.txt; sourceTree = "<group>"; };
 		957C65841F9612C700A2F972 /* PillRecogNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillRecogNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C65871F9612C700A2F972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		957C65891F9612C700A2F972 /* TakePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePhotoViewController.swift; sourceTree = "<group>"; };
@@ -192,12 +194,12 @@
 				953ECE911FACBFBF00278093 /* CoreDataStack.swift */,
 				957C65891F9612C700A2F972 /* TakePhotoViewController.swift */,
 				957C659C1F96168700A2F972 /* DataListTableViewController.swift */,
+				95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */,
 				957C658B1F9612C700A2F972 /* Main.storyboard */,
 				957C65911F9612C700A2F972 /* Assets.xcassets */,
 				957C65931F9612C700A2F972 /* LaunchScreen.storyboard */,
 				953ECE861FACBBA300278093 /* PillRecogNetApp.xcdatamodeld */,
 				957C65961F9612C700A2F972 /* Info.plist */,
-				95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */,
 			);
 			path = PillRecogNetApp;
 			sourceTree = "<group>";
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				95511F6A1FAFD0A00058CAD6 /* Network Parameters */,
+				95511FA71FAFDA490058CAD6 /* pillLabels.txt */,
 				95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */,
 				95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */,
 				95C110641FAC12CD00FEBAD1 /* PillLabelManager.swift */,
@@ -281,6 +284,7 @@
 				95511F9C1FAFD2390058CAD6 /* conv7_bias.bin in Resources */,
 				95511F8A1FAFD2390058CAD6 /* conv4_bias.bin in Resources */,
 				95511F961FAFD2390058CAD6 /* conv3_weights.bin in Resources */,
+				95511FA81FAFDA490058CAD6 /* pillLabels.txt in Resources */,
 				957C65951F9612C700A2F972 /* LaunchScreen.storyboard in Resources */,
 				95511F931FAFD2390058CAD6 /* conv1_bias.bin in Resources */,
 				95511FA61FAFD2390058CAD6 /* conv13_weights.bin in Resources */,
