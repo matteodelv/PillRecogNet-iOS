@@ -234,69 +234,90 @@ public class PillRecogNet {
 				let threadGroups = MTLSizeMake(preprocessedImage.texture.width / threadsPerGroups.width, preprocessedImage.texture.height / threadsPerGroups.height, 1)
 				encoder?.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadsPerGroups)
 				encoder?.endEncoding()
-				scaledImage.readCount = -1
+				scaledImage.readCount = 0
 				
 				let b1c1Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block1ImgDesc)
 				block1_conv1.encode(commandBuffer: comBuf, sourceImage: preprocessedImage, destinationImage: b1c1Img)
+				preprocessedImage.readCount = 0
 				
 				let b1c2Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block1ImgDesc)
 				block1_conv2.encode(commandBuffer: comBuf, sourceImage: b1c1Img, destinationImage: b1c2Img)
+				b1c1Img.readCount = 0
 				
 				let b1poolImg = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: pool_block1ImgDesc)
 				block1_pool.encode(commandBuffer: comBuf, sourceImage: b1c2Img, destinationImage: b1poolImg)
+				b1c2Img.readCount = 0
 				
 				let b2c1Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block2ImgDesc)
 				block2_conv1.encode(commandBuffer: comBuf, sourceImage: b1poolImg, destinationImage: b2c1Img)
+				b1poolImg.readCount = 0
 				
 				let b2c2Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block2ImgDesc)
 				block2_conv2.encode(commandBuffer: comBuf, sourceImage: b2c1Img, destinationImage: b2c2Img)
+				b2c1Img.readCount = 0
 				
 				let b2poolImg = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: pool_block2ImgDesc)
 				block2_pool.encode(commandBuffer: comBuf, sourceImage: b2c2Img, destinationImage: b2poolImg)
+				b2c2Img.readCount = 0
 				
 				let b3c1Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block3ImgDesc)
 				block3_conv1.encode(commandBuffer: comBuf, sourceImage: b2poolImg, destinationImage: b3c1Img)
+				b2poolImg.readCount = 0
 				
 				let b3c2Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block3ImgDesc)
 				block3_conv2.encode(commandBuffer: comBuf, sourceImage: b3c1Img, destinationImage: b3c2Img)
+				b3c1Img.readCount = 0
 				
 				let b3c3Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block3ImgDesc)
 				block3_conv3.encode(commandBuffer: comBuf, sourceImage: b3c2Img, destinationImage: b3c3Img)
+				b3c2Img.readCount = 0
 				
 				let b3poolImg = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: pool_block3ImgDesc)
 				block3_pool.encode(commandBuffer: comBuf, sourceImage: b3c3Img, destinationImage: b3poolImg)
+				b3c3Img.readCount = 0
 				
 				let b4c1Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block4ImgDesc)
 				block4_conv1.encode(commandBuffer: comBuf, sourceImage: b3poolImg, destinationImage: b4c1Img)
+				b3poolImg.readCount = 0
 				
 				let b4c2Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block4ImgDesc)
 				block4_conv2.encode(commandBuffer: comBuf, sourceImage: b4c1Img, destinationImage: b4c2Img)
+				b4c1Img.readCount = 0
 				
 				let b4c3Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block4ImgDesc)
 				block4_conv3.encode(commandBuffer: comBuf, sourceImage: b4c2Img, destinationImage: b4c3Img)
+				b4c2Img.readCount = 0
 				
 				let b4poolImg = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: pool_block4ImgDesc)
 				block4_pool.encode(commandBuffer: comBuf, sourceImage: b4c3Img, destinationImage: b4poolImg)
+				b4c3Img.readCount = 0
 				
 				let b5c1Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block5ImgDesc)
 				block5_conv1.encode(commandBuffer: comBuf, sourceImage: b4poolImg, destinationImage: b5c1Img)
+				b4poolImg.readCount = 0
 				
 				let b5c2Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block5ImgDesc)
 				block5_conv2.encode(commandBuffer: comBuf, sourceImage: b5c1Img, destinationImage: b5c2Img)
+				b5c1Img.readCount = 0
 				
 				let b5c3Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: conv_block5ImgDesc)
 				block5_conv3.encode(commandBuffer: comBuf, sourceImage: b5c2Img, destinationImage: b5c3Img)
+				b5c2Img.readCount = 0
 				
 				let b5poolImg = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: pool_block5ImgDesc)
 				block5_pool.encode(commandBuffer: comBuf, sourceImage: b5c3Img, destinationImage: b5poolImg)
+				b5c3Img.readCount = 0
 				
 				let dense1Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: denseImgDesc)
 				dense_1.encode(commandBuffer: comBuf, sourceImage: b5poolImg, destinationImage: dense1Img)
+				b5poolImg.readCount = 0
 				
 				let dense2Img = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: outputImgDesc)
 				dense_2.encode(commandBuffer: comBuf, sourceImage: dense1Img, destinationImage: dense2Img)
+				dense1Img.readCount = 0
 				
 				softmax.encode(commandBuffer: comBuf, sourceImage: dense2Img, destinationImage: outputImage)
+				dense2Img.readCount = 0
 				
 				comBuf.commit()
 				comBuf.waitUntilCompleted()
