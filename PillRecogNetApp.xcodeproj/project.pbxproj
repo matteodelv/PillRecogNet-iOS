@@ -45,6 +45,7 @@
 		95511FA51FAFD2390058CAD6 /* fc1_bias.bin in Resources */ = {isa = PBXBuildFile; fileRef = 95511F871FAFD2390058CAD6 /* fc1_bias.bin */; };
 		95511FA61FAFD2390058CAD6 /* conv13_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 95511F881FAFD2390058CAD6 /* conv13_weights.bin */; };
 		95511FA81FAFDA490058CAD6 /* pillLabels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 95511FA71FAFDA490058CAD6 /* pillLabels.txt */; };
+		95511FAA1FAFE0D80058CAD6 /* pipram-6476.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 95511FA91FAFE0D80058CAD6 /* pipram-6476.JPG */; };
 		957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65871F9612C700A2F972 /* AppDelegate.swift */; };
 		957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65891F9612C700A2F972 /* TakePhotoViewController.swift */; };
 		957C658D1F9612C700A2F972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C658B1F9612C700A2F972 /* Main.storyboard */; };
@@ -96,6 +97,7 @@
 		95511F871FAFD2390058CAD6 /* fc1_bias.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = fc1_bias.bin; sourceTree = "<group>"; };
 		95511F881FAFD2390058CAD6 /* conv13_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = conv13_weights.bin; sourceTree = "<group>"; };
 		95511FA71FAFDA490058CAD6 /* pillLabels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pillLabels.txt; sourceTree = "<group>"; };
+		95511FA91FAFE0D80058CAD6 /* pipram-6476.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pipram-6476.JPG"; sourceTree = "<group>"; };
 		957C65841F9612C700A2F972 /* PillRecogNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillRecogNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C65871F9612C700A2F972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		957C65891F9612C700A2F972 /* TakePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePhotoViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				957C659C1F96168700A2F972 /* DataListTableViewController.swift */,
 				95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */,
 				957C658B1F9612C700A2F972 /* Main.storyboard */,
+				95511FA91FAFE0D80058CAD6 /* pipram-6476.JPG */,
 				957C65911F9612C700A2F972 /* Assets.xcassets */,
 				957C65931F9612C700A2F972 /* LaunchScreen.storyboard */,
 				953ECE861FACBBA300278093 /* PillRecogNetApp.xcdatamodeld */,
@@ -302,6 +305,7 @@
 				95511FA31FAFD2390058CAD6 /* conv11_bias.bin in Resources */,
 				95511F891FAFD2390058CAD6 /* conv11_weights.bin in Resources */,
 				95511FA21FAFD2390058CAD6 /* conv2_weights.bin in Resources */,
+				95511FAA1FAFE0D80058CAD6 /* pipram-6476.JPG in Resources */,
 				95511F8F1FAFD2390058CAD6 /* conv8_weights.bin in Resources */,
 				95511F981FAFD2390058CAD6 /* fc1_weights.bin in Resources */,
 				95511F8C1FAFD2390058CAD6 /* conv13_bias.bin in Resources */,

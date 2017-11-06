@@ -26,6 +26,22 @@ class TakePhotoViewController: UIViewController {
 	@IBOutlet var dateLabel: UILabel!
 	@IBOutlet var classificationsTextView: UITextView!
 	
+	lazy var dateFormatter: DateFormatter = {
+		let formatter = DateFormatter()
+		formatter.dateStyle = .long
+		formatter.timeStyle = .short
+		formatter.locale = Locale.current
+		return formatter
+	}()
+	
+	lazy var numberFormatter: NumberFormatter = {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .percent
+		formatter.minimumFractionDigits = 2
+		formatter.maximumFractionDigits = 2
+		return formatter
+	}()
+	
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,6 +58,7 @@ class TakePhotoViewController: UIViewController {
 		guard MPSSupportsMTLDevice(device) else {
 			self.present(UIAlertController.errorAlertWith(message: "Il dispositivo in uso non soddisfa i requisiti necessari per l'utilizzo dell'applicazione."), animated: true)
 			statusLabel.text = "Rete Neurale non supportata!"
+			spinner.stopAnimating()
 			return
 		}
 		
@@ -51,10 +68,7 @@ class TakePhotoViewController: UIViewController {
 			self.network = PillRecogNet(device: self.device)
 			
 			DispatchQueue.main.async {
-				self.spinner.stopAnimating()
-				self.statusLabel.text = "Rete Neurale Pronta!"
-				self.takePictureButton.isEnabled = true
-				self.buttonStateChanged()
+				self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
 			}
 		}
 	}
@@ -76,6 +90,72 @@ class TakePhotoViewController: UIViewController {
 		} else {
 			takePictureButton.tintColor = UIColor(red: 205.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
 		}
+		takePictureButton.setNeedsDisplay()
+	}
+	
+	func updateUIAppearance(message: String, blocking: Bool) {
+		statusLabel.text = message
+		if blocking {
+			takePictureButton.isEnabled = false
+			statusLabel.textAlignment = .left
+			spinner.startAnimating()
+		} else {
+			takePictureButton.isEnabled = true
+			statusLabel.textAlignment = .center
+			spinner.stopAnimating()
+		}
+		buttonStateChanged()
+	}
+	
+	func predictExampleImage() {
+		updateUIAppearance(message: "Elaborando...", blocking: true)
+		
+		if let imageURL = Bundle.main.url(forResource: "pipram-6476", withExtension: "JPG"), let image = UIImage(named: "pipram-6476.JPG") {
+			do {
+				let texture = try textureLoader.newTexture(URL: imageURL, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
+				
+				thumbnailImageView.image = prepareThumbnailFrom(image: image)
+				
+				DispatchQueue.global().async {
+					let metalImage = MPSImage(texture: texture, featureChannels: 3)
+					let predictions = self.network.classify(pill: metalImage)
+					
+					DispatchQueue.main.async {
+						self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
+						self.show(classifications: predictions)
+					}
+				}
+			} catch {
+				updateUIAppearance(message: "Errore nella classificazione", blocking: false)
+			}
+		}
+	}
+	
+	func show(classifications: [PillMatch]) {
+		dateLabel.text = dateFormatter.string(from: Date())
+		// Handle overridden value
+		let firstLabel = classifications.first?.label
+		let firstProb = numberFormatter.string(from: NSNumber(value: classifications.first?.probability ?? 0.0))
+		bestMatchLabel.text = "\(firstLabel ?? "") (\(firstProb ?? ""))"
+		
+		var allClassifications: String = ""
+		for (i, classif) in classifications.enumerated() {
+			let label = classif.label
+			let probString = numberFormatter.string(from: NSNumber(value: classif.probability))
+			allClassifications += "\(i+1)) \(label) (\(probString ?? ""))\n"
+		}
+		classificationsTextView.text = allClassifications
+	}
+	
+	func prepareThumbnailFrom(image: UIImage) -> UIImage? {
+		let size = CGSize(width: 90.0, height: 90.0)
+		let scale: CGFloat = 0.0
+		
+		UIGraphicsBeginImageContextWithOptions(size, true, scale)
+		image.draw(in: CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: size))
+		let thumbnail = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return thumbnail
 	}
 	
 	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {
@@ -84,6 +164,8 @@ class TakePhotoViewController: UIViewController {
 
 	@IBAction func takePhotoPressed(_ sender: UIButton) {
 		print("Take photo button pressed!")
+		
+		predictExampleImage()
 	}
 
 }
