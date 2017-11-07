@@ -46,6 +46,7 @@
 		95511FA61FAFD2390058CAD6 /* conv13_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 95511F881FAFD2390058CAD6 /* conv13_weights.bin */; };
 		95511FA81FAFDA490058CAD6 /* pillLabels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 95511FA71FAFDA490058CAD6 /* pillLabels.txt */; };
 		95511FAA1FAFE0D80058CAD6 /* pipram-6476.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 95511FA91FAFE0D80058CAD6 /* pipram-6476.JPG */; };
+		95511FAC1FB0A82C0058CAD6 /* ClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95511FAB1FB0A82C0058CAD6 /* ClassificationTableViewCell.swift */; };
 		957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65871F9612C700A2F972 /* AppDelegate.swift */; };
 		957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C65891F9612C700A2F972 /* TakePhotoViewController.swift */; };
 		957C658D1F9612C700A2F972 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 957C658B1F9612C700A2F972 /* Main.storyboard */; };
@@ -98,6 +99,7 @@
 		95511F881FAFD2390058CAD6 /* conv13_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = conv13_weights.bin; sourceTree = "<group>"; };
 		95511FA71FAFDA490058CAD6 /* pillLabels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pillLabels.txt; sourceTree = "<group>"; };
 		95511FA91FAFE0D80058CAD6 /* pipram-6476.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pipram-6476.JPG"; sourceTree = "<group>"; };
+		95511FAB1FB0A82C0058CAD6 /* ClassificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationTableViewCell.swift; sourceTree = "<group>"; };
 		957C65841F9612C700A2F972 /* PillRecogNetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillRecogNetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		957C65871F9612C700A2F972 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		957C65891F9612C700A2F972 /* TakePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePhotoViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				953ECE8A1FACBBBB00278093 /* Classification+CoreDataProperties.swift */,
 				953ECE8B1FACBBBB00278093 /* Photo+CoreDataClass.swift */,
 				953ECE8C1FACBBBB00278093 /* Photo+CoreDataProperties.swift */,
+				95511FAB1FB0A82C0058CAD6 /* ClassificationTableViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				953ECE8F1FACBBBB00278093 /* Photo+CoreDataClass.swift in Sources */,
 				95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */,
 				953ECE8D1FACBBBB00278093 /* Classification+CoreDataClass.swift in Sources */,
+				95511FAC1FB0A82C0058CAD6 /* ClassificationTableViewCell.swift in Sources */,
 				953ECE921FACBFBF00278093 /* CoreDataStack.swift in Sources */,
 				95B9D7301FAF570900300037 /* UIAlertController+Extensions.swift in Sources */,
 				95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */,

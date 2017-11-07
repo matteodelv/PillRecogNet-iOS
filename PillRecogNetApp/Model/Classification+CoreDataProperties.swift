@@ -23,5 +23,6 @@ extension Classification {
     @NSManaged public var sentToRemote: Bool
     @NSManaged public var thumbnail: NSData?
     @NSManaged public var photo: Photo?
+	@NSManaged public var overriddenLabel: String?
 
 }
