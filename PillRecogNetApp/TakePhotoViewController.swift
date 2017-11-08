@@ -11,6 +11,7 @@ import CoreData
 import MetalKit
 import MetalPerformanceShaders
 import AVFoundation
+import CoreImage
 
 class TakePhotoViewController: UIViewController {
 	
@@ -95,8 +96,6 @@ class TakePhotoViewController: UIViewController {
 	}
 
 	@IBAction func takePhotoPressed(_ sender: UIButton) {
-		print("Take photo button pressed!")
-		
 //		predictExampleImage()
 		presentImagePicker()
 	}
@@ -180,7 +179,7 @@ private extension TakePhotoViewController {
 					}
 				}
 			} catch {
-				updateUIAppearance(message: "Errore nella classificazione", blocking: false)
+				updateUIAppearance(message: "Errore nella classificazione. Riprovare", blocking: false)
 			}
 		}
 	}
@@ -221,6 +220,40 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		
+		updateUIAppearance(message: "Elaborando...", blocking: true)
+		
+		let photoTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
+		
+		var coreGraphicPhoto = photoTaken.cgImage
+		if coreGraphicPhoto == nil {
+			var coreImagePhoto = photoTaken.ciImage
+			if coreImagePhoto == nil {
+				coreImagePhoto = CIImage(image: photoTaken)
+			}
+			
+			let coreImageContext = CIContext.init(mtlDevice: device)
+			coreGraphicPhoto = coreImageContext.createCGImage(coreImagePhoto!, from: coreImagePhoto!.extent)
+		}
+		
+		do {
+			let texture = try textureLoader.newTexture(cgImage: coreGraphicPhoto!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
+			
+			thumbnailImageView.image = prepareThumbnailFrom(image: photoTaken)
+			
+			DispatchQueue.global().async {
+				let metalImage = MPSImage(texture: texture, featureChannels: 3)
+				let predictions = self.network.classify(pill: metalImage)
+				
+				DispatchQueue.main.async {
+					self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
+					self.show(classifications: predictions)
+				}
+			}
+		} catch {
+			updateUIAppearance(message: "Errore nella classificazione. Riprovare.", blocking: false)
+		}
+		
+		dismiss(animated: true, completion: nil)
 	}
 }
 
