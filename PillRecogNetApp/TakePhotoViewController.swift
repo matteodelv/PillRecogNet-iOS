@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import MetalKit
 import MetalPerformanceShaders
+import AVFoundation
 
 class TakePhotoViewController: UIViewController {
 	
@@ -68,7 +69,12 @@ class TakePhotoViewController: UIViewController {
 			self.network = PillRecogNet(device: self.device)
 			
 			DispatchQueue.main.async {
-				self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
+				self.checkCameraAuthStatus(onSuccess: {
+					self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
+				}, onFailure: {
+					self.updateUIAppearance(message: "Non è possibile utilizzare la fotocamera. Controllare che sia stata concessa l'autorizzazione all'applicazione.", blocking: true)
+					self.spinner.stopAnimating()
+				})
 			}
 		}
 	}
@@ -84,6 +90,20 @@ class TakePhotoViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 	
+	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {
+		print("Done button pressed!")
+	}
+
+	@IBAction func takePhotoPressed(_ sender: UIButton) {
+		print("Take photo button pressed!")
+		
+//		predictExampleImage()
+		presentImagePicker()
+	}
+
+}
+
+private extension TakePhotoViewController {
 	func buttonStateChanged() {
 		if takePictureButton.state == .disabled {
 			takePictureButton.tintColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
@@ -97,14 +117,48 @@ class TakePhotoViewController: UIViewController {
 		statusLabel.text = message
 		if blocking {
 			takePictureButton.isEnabled = false
-			statusLabel.textAlignment = .left
 			spinner.startAnimating()
 		} else {
 			takePictureButton.isEnabled = true
-			statusLabel.textAlignment = .center
 			spinner.stopAnimating()
 		}
 		buttonStateChanged()
+	}
+	
+	func checkCameraAuthStatus(onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
+		guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+			onFailure()
+			return
+		}
+		
+		let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+		
+		switch (authStatus) {
+		case .authorized:
+			DispatchQueue.main.async { onSuccess() }
+		case .denied, .restricted:
+			DispatchQueue.main.async { onFailure() }
+		case .notDetermined:
+			AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted) in
+				if granted {
+					DispatchQueue.main.async { onSuccess() }
+				} else {
+					DispatchQueue.main.async { onFailure() }
+				}
+			})
+		}
+	}
+	
+	func presentImagePicker() {
+		checkCameraAuthStatus(onSuccess: {
+			let cameraPicker = UIImagePickerController()
+			cameraPicker.delegate = self
+			cameraPicker.sourceType = UIImagePickerControllerSourceType.camera
+			cameraPicker.allowsEditing = true
+			self.present(cameraPicker, animated: true, completion: nil)
+		}, onFailure: {
+			self.updateUIAppearance(message: "Non è possibile utilizzare la fotocamera. Controllare che sia stata concessa l'autorizzazione all'applicazione.", blocking: false)
+		})
 	}
 	
 	func predictExampleImage() {
@@ -157,16 +211,16 @@ class TakePhotoViewController: UIViewController {
 		UIGraphicsEndImageContext()
 		return thumbnail
 	}
+}
+
+extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
-	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {
-		print("Done button pressed!")
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		self.navigationController?.dismiss(animated: true)
 	}
-
-	@IBAction func takePhotoPressed(_ sender: UIButton) {
-		print("Take photo button pressed!")
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		
-		predictExampleImage()
 	}
-
 }
 
