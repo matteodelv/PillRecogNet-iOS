@@ -17,6 +17,8 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		self.title = "Foto Scattata"
+		
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(zoom))
 		tapRecognizer.numberOfTapsRequired = 2
 		scrollView.addGestureRecognizer(tapRecognizer)

@@ -40,6 +40,8 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		self.title = "Dettagli"
+		
 		overrideButton.layer.cornerRadius = 10.0
 		
 		imageView.isUserInteractionEnabled = true
@@ -53,6 +55,7 @@ class DetailsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 	
+	// TODO: handle classification label overriding
 	@IBAction func overrideButtonTapped(_ sender: UIButton) {
 		
 	}

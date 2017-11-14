@@ -54,7 +54,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OUR-56-VvO" userLabel="Last Classification Stack View">
                                 <rect key="frame" x="16" y="193" width="343" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="l6W-7e-Hdi" userLabel="Thumbnail Image View">
+                                    <imageView contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="l6W-7e-Hdi" userLabel="Thumbnail Image View">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="36j-4d-zog"/>
@@ -90,6 +90,7 @@
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUE-u5-sSS" userLabel="How To Text View">
                                 <rect key="frame" x="16" y="428" width="343" height="115"/>
+                                <color key="tintColor" red="0.31372549020000001" green="0.67843137249999996" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="115" id="dUr-40-pt9"/>
                                 </constraints>
@@ -146,7 +147,9 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Riconoscimento" id="6qY-QP-s0s"/>
+                    <navigationItem key="navigationItem" title="Riconoscimento" id="6qY-QP-s0s">
+                        <barButtonItem key="backBarButtonItem" title="Riconoscimento" id="oCx-RP-Iuf"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="bestMatchLabel" destination="zSU-dC-kno" id="tRC-Hw-ZMA"/>
                         <outlet property="classificationsTextView" destination="VUH-qC-KyT" id="Zwh-v1-w9Y"/>
@@ -160,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="395.625" y="132.04225352112675"/>
+            <point key="canvasLocation" x="458" y="132"/>
         </scene>
         <!--Gestione Dati-->
         <scene sceneID="FDu-Cn-8fz">
@@ -223,16 +226,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gestione Dati" id="YCr-DV-2Up">
+                        <barButtonItem key="backBarButtonItem" title="Gestione Dati" id="laR-GI-ruB"/>
                         <barButtonItem key="leftBarButtonItem" title="Chiudi" id="jAV-xa-B0u">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="fnN-PO-6R9" kind="unwind" unwindAction="doneButtonPressed:" id="WSV-eJ-biM"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Salva Foto" id="zMw-pY-z3j">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="savePhotos" destination="ujP-am-vje" id="Y5U-GV-heo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -290,7 +288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4A-dD-WcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3636" y="-122"/>
+            <point key="canvasLocation" x="3590" y="132"/>
         </scene>
         <!--Dettagli-->
         <scene sceneID="jOE-Jw-zod">
@@ -371,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3g-9t-g4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2844" y="320"/>
+            <point key="canvasLocation" x="2806" y="529"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7RK-JF-I1V">
@@ -399,7 +397,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8W-rC-s4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-439" y="134"/>
+            <point key="canvasLocation" x="-375" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QjZ-gR-fFS">

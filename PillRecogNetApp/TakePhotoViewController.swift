@@ -19,6 +19,7 @@ class TakePhotoViewController: UIViewController {
 	private var device: MTLDevice!
 	private var textureLoader: MTKTextureLoader!
 	private var network: PillRecogNet!
+	private var originalPhotoData: NSData?
 	
 	@IBOutlet var takePictureButton: UIButton!
 	@IBOutlet var statusLabel: UILabel!
@@ -48,6 +49,8 @@ class TakePhotoViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		self.title = "Riconoscimento"
+		
 		self.navigationController?.navigationBar.barStyle = .black // To set status bar style
 		spinner.startAnimating()
 		bestMatchLabel.text = nil
@@ -55,6 +58,9 @@ class TakePhotoViewController: UIViewController {
 		statusLabel.text = "Caricamento Rete Neurale..."
 		takePictureButton.layer.cornerRadius = 10.0
 		takePictureButton.isEnabled = false
+		
+		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showTakenPhoto))
+		thumbnailImageView.addGestureRecognizer(tapRecognizer)
 		
 		device = MTLCreateSystemDefaultDevice()
 		guard MPSSupportsMTLDevice(device) else {
@@ -91,8 +97,13 @@ class TakePhotoViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 	
+	// TODO: remove func an duse specific dismissal code
 	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {
 		print("Done button pressed!")
+	}
+	
+	@objc func showTakenPhoto(sender: UITapGestureRecognizer) {
+		self.performSegue(withIdentifier: "ImageViewerFromBeginningSegue", sender: self)
 	}
 
 	@IBAction func takePhotoPressed(_ sender: UIButton) {
@@ -104,6 +115,10 @@ class TakePhotoViewController: UIViewController {
 		if segue.identifier == "managementSegue" {
 			if let navController = segue.destination as? UINavigationController, let managementVC = navController.topViewController as? DataListTableViewController {
 				managementVC.coreDataStack = coreDataStack
+			}
+		} else if segue.identifier == "ImageViewerFromBeginningSegue" {
+			if let destination = segue.destination as? ImageViewerViewController {
+				destination.pillImageData = originalPhotoData
 			}
 		}
 	}
@@ -194,7 +209,7 @@ private extension TakePhotoViewController {
 					
 					DispatchQueue.main.async {
 						self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
-						self.show(classifications: predictions)
+						self.show(classifications: predictions, originalPhoto: photoTaken)
 					}
 				}
 			} catch {
@@ -204,10 +219,10 @@ private extension TakePhotoViewController {
 		}
 	}
 	
-	func show(classifications: [PillMatch]) {
+	func show(classifications: [PillMatch], originalPhoto: UIImage) {
 		print(classifications)
 		dateLabel.text = dateFormatter.string(from: Date())
-		// Handle overridden value
+		// TODO: Handle overridden value
 		let firstLabel = classifications.first?.label
 		let firstProb = numberFormatter.string(from: NSNumber(value: classifications.first?.probability ?? 0.0))
 		bestMatchLabel.text = "\(firstLabel ?? "") (\(firstProb ?? ""))"
@@ -219,6 +234,8 @@ private extension TakePhotoViewController {
 			allClassifications += "\(i+1)) \(label) (\(probString ?? ""))\n"
 		}
 		classificationsTextView.text = allClassifications
+		
+		originalPhotoData = UIImageJPEGRepresentation(originalPhoto, 1.0) as NSData?
 	}
 	
 	func prepareThumbnailFrom(image: UIImage) -> UIImage? {
@@ -271,7 +288,7 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 				DispatchQueue.main.async {
 					self.save(predictions: predictions, for: photoTaken, thumb: thumb)
 					self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
-					self.show(classifications: predictions)	// TODO: change this to try core data saving and loading
+					self.show(classifications: predictions, originalPhoto: photoTaken)	// TODO: change this to try core data saving and loading
 				}
 			}
 		} catch {
@@ -318,16 +335,6 @@ extension TakePhotoViewController {
 				context.rollback()
 			}
 		}
-		
-//		coreDataStack.save(usingChildContext: true, onSuccess: {
-//			DispatchQueue.main.async {
-//				let alertController = UIAlertController.errorAlertWith(message: "OK :D")
-//				self.present(alertController, animated: true, completion: nil)
-////				context.rollback()
-//			}
-//		}, onError: { (error) in
-//
-//		})
 	}
 }
 

@@ -45,6 +45,8 @@ class DataListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		self.title = "Classificazioni"
+		
 		self.navigationController?.navigationBar.barStyle = .black
 		tableView.rowHeight = 90.0
 		tableView.register(ClassificationTableViewCell.self, forCellReuseIdentifier: "PillPhotoCellIdentification")
@@ -56,17 +58,6 @@ class DataListTableViewController: UITableViewController {
 			self.present(alertController, animated: true, completion: nil)
 		}
     }
-	
-	@IBAction func savePhotos() {
-		let classifications = frc.fetchedObjects
-		if let c = classifications {
-			for classification in c {
-				if let originalPhoto = classification.photo?.originalPhoto as Data?, let image = UIImage(data: originalPhoto) {
-					UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-				}
-			}
-		}
-	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "ClassificationDetailsSegue" {
