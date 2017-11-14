@@ -143,17 +143,17 @@ public class PillRecogNet {
 	let dense_1: PillFullyConnected
 	let dense_2: PillFullyConnected
 	
-	let inputImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 320, height: 320, featureChannels: 3)
-	let conv_block1ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 320, height: 320, featureChannels: 64)
-	let pool_block1ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 160, height: 160, featureChannels: 64)
-	let conv_block2ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 160, height: 160, featureChannels: 128)
-	let pool_block2ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 80, height: 80, featureChannels: 128)
-	let conv_block3ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 80, height: 80, featureChannels: 256)
-	let pool_block3ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 40, height: 40, featureChannels: 256)
-	let conv_block4ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 40, height: 40, featureChannels: 512)
-	let pool_block4ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 20, height: 20, featureChannels: 512)
-	let conv_block5ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 20, height: 20, featureChannels: 512)
-	let pool_block5ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 10, height: 10, featureChannels: 512)
+	let inputImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 224, height: 224, featureChannels: 3)
+	let conv_block1ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 224, height: 224, featureChannels: 64)
+	let pool_block1ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 112, height: 112, featureChannels: 64)
+	let conv_block2ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 112, height: 112, featureChannels: 128)
+	let pool_block2ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 56, height: 56, featureChannels: 128)
+	let conv_block3ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 56, height: 56, featureChannels: 256)
+	let pool_block3ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 28, height: 28, featureChannels: 256)
+	let conv_block4ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 28, height: 28, featureChannels: 512)
+	let pool_block4ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 14, height: 14, featureChannels: 512)
+	let conv_block5ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 14, height: 14, featureChannels: 512)
+	let pool_block5ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 7, height: 7, featureChannels: 512)
 	let denseImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 1, height: 1, featureChannels: 512)
 	let outputImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 1, height: 1, featureChannels: 12)
 	
@@ -206,7 +206,7 @@ public class PillRecogNet {
 		block5_conv3 = PillConvolution(device: device, inputDepth: 512, outputDepth: 512, parametersName: "conv13", filter: relu)
 		block5_pool = createPoolingMax(device: device)
 		
-		dense_1 = PillFullyConnected(device: device, kernelSize: 10, inputDepth: 512, outputDepth: 512, parametersName: "fc1", filter: relu)
+		dense_1 = PillFullyConnected(device: device, kernelSize: 7, inputDepth: 512, outputDepth: 512, parametersName: "fc1", filter: relu)
 		dense_2 = PillFullyConnected(device: device, kernelSize: 1, inputDepth: 512, outputDepth: 12, parametersName: "fc2", filter: nil)
 		
 		for desc in self.imageDescriptors {
@@ -222,14 +222,14 @@ public class PillRecogNet {
 				
 				let scaledImage = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: inputImgDesc)
 				lanczos.encode(commandBuffer: comBuf, sourceTexture: inputImage.texture, destinationTexture: scaledImage.texture)
-				
+
 				let preprocessedImage = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: inputImgDesc)
 				
 				let encoder = comBuf.makeComputeCommandEncoder()
 				encoder?.setComputePipelineState(bgrPipeline)
 				encoder?.setTexture(scaledImage.texture, index: 0)
 				encoder?.setTexture(preprocessedImage.texture, index: 1)
-				
+
 				let threadsPerGroups = MTLSizeMake(8, 8, 1)
 				let threadGroups = MTLSizeMake(preprocessedImage.texture.width / threadsPerGroups.width, preprocessedImage.texture.height / threadsPerGroups.height, 1)
 				encoder?.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadsPerGroups)
