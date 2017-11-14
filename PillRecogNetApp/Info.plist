@@ -6,6 +6,10 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSCameraUsageDescription</key>
 	<string>La fotocamera verrà utilizzata per scattare le foto ai medicinali da classificare.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Bla</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Bla Bla</string>
 	<key>CFBundleDisplayName</key>
 	<string>PillRecogNet</string>
 	<key>CFBundleExecutable</key>

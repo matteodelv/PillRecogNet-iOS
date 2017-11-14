@@ -99,6 +99,14 @@ class TakePhotoViewController: UIViewController {
 //		predictExampleImage()
 		presentImagePicker()
 	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "managementSegue" {
+			if let navController = segue.destination as? UINavigationController, let managementVC = navController.topViewController as? DataListTableViewController {
+				managementVC.coreDataStack = coreDataStack
+			}
+		}
+	}
 
 }
 
@@ -163,11 +171,22 @@ private extension TakePhotoViewController {
 	func predictExampleImage() {
 		updateUIAppearance(message: "Elaborando...", blocking: true)
 		
-		if let imageURL = Bundle.main.url(forResource: "pipram-6476", withExtension: "JPG"), let image = UIImage(named: "pipram-6476.JPG") {
+		if let imageURL = Bundle.main.url(forResource: "neurontin-6367", withExtension: "JPG"), let photoTaken = UIImage(named: "neurontin-6367.JPG") {
 			do {
-				let texture = try textureLoader.newTexture(URL: imageURL, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
+				var coreGraphicPhoto = photoTaken.cgImage
+				if coreGraphicPhoto == nil {
+					var coreImagePhoto = photoTaken.ciImage
+					if coreImagePhoto == nil {
+						coreImagePhoto = CIImage(image: photoTaken)
+					}
+
+					let coreImageContext = CIContext.init(mtlDevice: device)
+					coreGraphicPhoto = coreImageContext.createCGImage(coreImagePhoto!, from: coreImagePhoto!.extent)
+				}
+//				let texture = try textureLoader.newTexture(URL: imageURL, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
+				let texture = try textureLoader.newTexture(cgImage: coreGraphicPhoto!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
 				
-				thumbnailImageView.image = prepareThumbnailFrom(image: image)
+				thumbnailImageView.image = prepareThumbnailFrom(image: photoTaken)
 				
 				DispatchQueue.global().async {
 					let metalImage = MPSImage(texture: texture, featureChannels: 3)
@@ -179,12 +198,14 @@ private extension TakePhotoViewController {
 					}
 				}
 			} catch {
+				print(error)
 				updateUIAppearance(message: "Errore nella classificazione. Riprovare", blocking: false)
 			}
 		}
 	}
 	
 	func show(classifications: [PillMatch]) {
+		print(classifications)
 		dateLabel.text = dateFormatter.string(from: Date())
 		// Handle overridden value
 		let firstLabel = classifications.first?.label
@@ -201,7 +222,7 @@ private extension TakePhotoViewController {
 	}
 	
 	func prepareThumbnailFrom(image: UIImage) -> UIImage? {
-		let size = CGSize(width: 90.0, height: 90.0)
+		let size = CGSize(width: 250.0, height: 250.0)
 		let scale: CGFloat = 0.0
 		
 		UIGraphicsBeginImageContextWithOptions(size, true, scale)
@@ -222,7 +243,7 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 		
 		updateUIAppearance(message: "Elaborando...", blocking: true)
 		
-		let photoTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
+		let photoTaken = info[UIImagePickerControllerEditedImage] as! UIImage
 		
 		var coreGraphicPhoto = photoTaken.cgImage
 		if coreGraphicPhoto == nil {
@@ -236,24 +257,77 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 		}
 		
 		do {
+//			let texture = try textureLoader.newTexture(data: UIImageJPEGRepresentation(photoTaken, 1.0)!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
 			let texture = try textureLoader.newTexture(cgImage: coreGraphicPhoto!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
 			
-			thumbnailImageView.image = prepareThumbnailFrom(image: photoTaken)
+			let thumb = prepareThumbnailFrom(image: photoTaken)
+			thumbnailImageView.image = thumb
 			
 			DispatchQueue.global().async {
 				let metalImage = MPSImage(texture: texture, featureChannels: 3)
 				let predictions = self.network.classify(pill: metalImage)
 				
+				
 				DispatchQueue.main.async {
+					self.save(predictions: predictions, for: photoTaken, thumb: thumb)
 					self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
-					self.show(classifications: predictions)
+					self.show(classifications: predictions)	// TODO: change this to try core data saving and loading
 				}
 			}
 		} catch {
+			print(error)
 			updateUIAppearance(message: "Errore nella classificazione. Riprovare.", blocking: false)
 		}
 		
 		dismiss(animated: true, completion: nil)
+	}
+}
+
+extension TakePhotoViewController {
+	
+	func save(predictions: [PillMatch], for image: UIImage, thumb: UIImage?) {
+		let context = coreDataStack.childContext
+		
+		let classification = Classification(context: context)
+		classification.date = Date() as NSDate
+		classification.overriddenLabel = nil
+		
+		var thumbData: Data?
+		if thumb == nil, let t = prepareThumbnailFrom(image: image) {
+			thumbData = UIImageJPEGRepresentation(t, 1.0)
+		} else if let t = thumb {
+			thumbData = UIImageJPEGRepresentation(t, 1.0)
+		}
+		classification.thumbnail = thumbData as NSData?
+		
+		let original = Photo(context: context)
+		original.originalPhoto = UIImageJPEGRepresentation(image, 1.0) as NSData?
+		classification.photo = original
+		
+		for prediction in predictions {
+			let match = Match(context: context)
+			match.label = prediction.label
+			match.probability = prediction.probability
+			classification.addToMatches(match)
+		}
+		
+		coreDataStack.save(usingChildContext: true, onSuccess: nil) { (error) in
+			DispatchQueue.main.async {
+				let alertController = UIAlertController.errorAlertWith(message: "Si è verificato un errore durante il salvataggio della classificazione!")
+				self.present(alertController, animated: true, completion: nil)
+				context.rollback()
+			}
+		}
+		
+//		coreDataStack.save(usingChildContext: true, onSuccess: {
+//			DispatchQueue.main.async {
+//				let alertController = UIAlertController.errorAlertWith(message: "OK :D")
+//				self.present(alertController, animated: true, completion: nil)
+////				context.rollback()
+//			}
+//		}, onError: { (error) in
+//
+//		})
 	}
 }
 
