@@ -2,6 +2,13 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+Example\ Photos/
+*.JPG
+*.PNG
+*.jpg
+*.jpeg
+*.png
+
 ## Build generated
 build/
 DerivedData/
