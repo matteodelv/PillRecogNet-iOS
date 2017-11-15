@@ -97,11 +97,6 @@ class TakePhotoViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 	
-	// TODO: remove func an duse specific dismissal code
-	@IBAction func doneButtonPressed(_ segue: UIStoryboardSegue) {
-		print("Done button pressed!")
-	}
-	
 	@objc func showTakenPhoto(sender: UITapGestureRecognizer) {
 		self.performSegue(withIdentifier: "ImageViewerFromBeginningSegue", sender: self)
 	}
@@ -135,8 +130,9 @@ private extension TakePhotoViewController {
 		takePictureButton.setNeedsDisplay()
 	}
 	
-	func updateUIAppearance(message: String, blocking: Bool) {
+	func updateUIAppearance(message: String?, blocking: Bool) {
 		statusLabel.text = message
+		statusLabel.isHidden = (statusLabel.text == nil)
 		if blocking {
 			takePictureButton.isEnabled = false
 			spinner.startAnimating()
@@ -183,46 +179,36 @@ private extension TakePhotoViewController {
 		})
 	}
 	
-	func predictExampleImage() {
-		updateUIAppearance(message: "Elaborando...", blocking: true)
-		
-		if let imageURL = Bundle.main.url(forResource: "neurontin-6367", withExtension: "JPG"), let photoTaken = UIImage(named: "neurontin-6367.JPG") {
-			do {
-				var coreGraphicPhoto = photoTaken.cgImage
-				if coreGraphicPhoto == nil {
-					var coreImagePhoto = photoTaken.ciImage
-					if coreImagePhoto == nil {
-						coreImagePhoto = CIImage(image: photoTaken)
-					}
-
-					let coreImageContext = CIContext.init(mtlDevice: device)
-					coreGraphicPhoto = coreImageContext.createCGImage(coreImagePhoto!, from: coreImagePhoto!.extent)
-				}
+//	func predictExampleImage() {
+//		updateUIAppearance(message: "Elaborando...", blocking: true)
+//
+//		if let imageURL = Bundle.main.url(forResource: "neurontin-6367", withExtension: "JPG"), let photoTaken = UIImage(named: "neurontin-6367.JPG") {
+//			do {
 //				let texture = try textureLoader.newTexture(URL: imageURL, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
-				let texture = try textureLoader.newTexture(cgImage: coreGraphicPhoto!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
-				
-				thumbnailImageView.image = prepareThumbnailFrom(image: photoTaken)
-				
-				DispatchQueue.global().async {
-					let metalImage = MPSImage(texture: texture, featureChannels: 3)
-					let predictions = self.network.classify(pill: metalImage)
-					
-					DispatchQueue.main.async {
-						self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
-						self.show(classifications: predictions, originalPhoto: photoTaken)
-					}
-				}
-			} catch {
-				print(error)
-				updateUIAppearance(message: "Errore nella classificazione. Riprovare", blocking: false)
-			}
-		}
-	}
+//
+//				thumbnailImageView.image = prepareThumbnailFrom(image: photoTaken)
+//
+//				DispatchQueue.global().async {
+//					let metalImage = MPSImage(texture: texture, featureChannels: 3)
+//					let predictions = self.network.classify(pill: metalImage)
+//
+//					DispatchQueue.main.async {
+//						// Saving missing because it's just an example function
+//						self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
+//						self.show(classifications: predictions, originalPhoto: photoTaken)
+//					}
+//				}
+//			} catch {
+//				print(error)
+//				updateUIAppearance(message: "Errore nella classificazione. Riprovare", blocking: false)
+//			}
+//		}
+//	}
 	
 	func show(classifications: [PillMatch], originalPhoto: UIImage) {
 		print(classifications)
 		dateLabel.text = dateFormatter.string(from: Date())
-		// TODO: Handle overridden value
+		
 		let firstLabel = classifications.first?.label
 		let firstProb = numberFormatter.string(from: NSNumber(value: classifications.first?.probability ?? 0.0))
 		bestMatchLabel.text = "\(firstLabel ?? "") (\(firstProb ?? ""))"
@@ -258,7 +244,7 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		
-		updateUIAppearance(message: "Elaborando...", blocking: true)
+		updateUIAppearance(message: nil, blocking: true)
 		
 		let photoTaken = info[UIImagePickerControllerEditedImage] as! UIImage
 		
@@ -274,7 +260,6 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 		}
 		
 		do {
-//			let texture = try textureLoader.newTexture(data: UIImageJPEGRepresentation(photoTaken, 1.0)!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
 			let texture = try textureLoader.newTexture(cgImage: coreGraphicPhoto!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
 			
 			let thumb = prepareThumbnailFrom(image: photoTaken)
@@ -288,7 +273,7 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 				DispatchQueue.main.async {
 					self.save(predictions: predictions, for: photoTaken, thumb: thumb)
 					self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
-					self.show(classifications: predictions, originalPhoto: photoTaken)	// TODO: change this to try core data saving and loading
+					self.show(classifications: predictions, originalPhoto: photoTaken)
 				}
 			}
 		} catch {
@@ -307,7 +292,6 @@ extension TakePhotoViewController {
 		
 		let classification = Classification(context: context)
 		classification.date = Date() as NSDate
-		classification.overriddenLabel = nil
 		
 		var thumbData: Data?
 		if thumb == nil, let t = prepareThumbnailFrom(image: image) {

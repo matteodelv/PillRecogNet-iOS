@@ -18,7 +18,6 @@ class DetailsViewController: UIViewController {
 	@IBOutlet var classificationLabel: UILabel!
 	@IBOutlet var dateLabel: UILabel!
 	@IBOutlet var infoTextView: UITextView!
-	@IBOutlet var overrideButton: UIButton!
 	
 	lazy var dateFormatter: DateFormatter = {
 		let formatter = DateFormatter()
@@ -42,8 +41,6 @@ class DetailsViewController: UIViewController {
 		
 		self.title = "Dettagli"
 		
-		overrideButton.layer.cornerRadius = 10.0
-		
 		imageView.isUserInteractionEnabled = true
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
 		imageView.addGestureRecognizer(tapRecognizer)
@@ -55,21 +52,12 @@ class DetailsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 	
-	// TODO: handle classification label overriding
-	@IBAction func overrideButtonTapped(_ sender: UIButton) {
-		
-	}
-	
 	func populateUI() {
 		let sortDescriptor = NSSortDescriptor(key: #keyPath(Match.probability), ascending: false)
 		let sortedMatches = classification.matches?.sortedArray(using: [sortDescriptor]) as! [Match]
 		
-		if let overridden = classification.overriddenLabel, overridden.count > 0 {
-			classificationLabel.text = "\(overridden) (Manuale)"
-		} else {
-			let probNumber = NSNumber(value: sortedMatches[0].probability)
-			classificationLabel.text = "\(sortedMatches[0].label ?? "") (\(numberFormatter.string(from: probNumber) ?? "0.0"))"
-		}
+		let probNumber = NSNumber(value: sortedMatches[0].probability)
+		classificationLabel.text = "\(sortedMatches[0].label ?? "") (\(numberFormatter.string(from: probNumber) ?? "0.0"))"
 		
 		if let date = classification.date as Date? {
 			dateLabel.text = dateFormatter.string(from: date)
@@ -89,7 +77,6 @@ class DetailsViewController: UIViewController {
 	}
 	
 	@objc func imageViewTapped() {
-		print("pressed!")
 		self.performSegue(withIdentifier: "ImageViewerFromDetailsSegue", sender: self)
 	}
 	

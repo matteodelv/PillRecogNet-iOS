@@ -76,6 +76,10 @@ class DataListTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	@IBAction func dismiss(_ sender: UIBarButtonItem) {
+		self.dismiss(animated: true, completion: nil)
+	}
 
 }
 
@@ -100,15 +104,10 @@ extension DataListTableViewController {
 	func configure(cell: ClassificationTableViewCell, for indexPath: IndexPath) {
 		let classification = frc.object(at: indexPath)
 		
-		// Classification label has been overridden
-		if let overridden = classification.overriddenLabel, overridden.count > 0 {
-			cell.classificationLabel.text = "\(overridden) (Manuale)"
-		} else {
-			let sortDescriptor = NSSortDescriptor(key: #keyPath(Match.probability), ascending: false)
-			let sortedMatches = classification.matches?.sortedArray(using: [sortDescriptor]) as! [Match]
-			let probNumber = NSNumber(value: sortedMatches[0].probability)
-			cell.classificationLabel.text = "\(sortedMatches[0].label ?? "") (\(numberFormatter.string(from: probNumber) ?? "0.0"))"
-		}
+		let sortDescriptor = NSSortDescriptor(key: #keyPath(Match.probability), ascending: false)
+		let sortedMatches = classification.matches?.sortedArray(using: [sortDescriptor]) as! [Match]
+		let probNumber = NSNumber(value: sortedMatches[0].probability)
+		cell.classificationLabel.text = "\(sortedMatches[0].label ?? "") (\(numberFormatter.string(from: probNumber) ?? "0.0"))"
 		
 		if let date = classification.date as Date? {
 			cell.dateLabel?.text = dateFormatter.string(from: date)
@@ -131,7 +130,7 @@ extension DataListTableViewController: NSFetchedResultsControllerDelegate {
 	}
 	
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-		
+		print(#function)
 		switch (type) {
 		case .insert:
 			tableView.insertRows(at: [newIndexPath!], with: .automatic)

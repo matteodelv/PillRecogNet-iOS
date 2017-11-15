@@ -80,7 +80,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VUH-qC-KyT" userLabel="Classifications Text View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VUH-qC-KyT" userLabel="Classifications Text View">
                                 <rect key="frame" x="16" y="293" width="343" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="HvQ-OD-Y5d"/>
@@ -88,7 +88,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUE-u5-sSS" userLabel="How To Text View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUE-u5-sSS" userLabel="How To Text View">
                                 <rect key="frame" x="16" y="428" width="343" height="115"/>
                                 <color key="tintColor" red="0.31372549020000001" green="0.67843137249999996" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -98,20 +98,20 @@
                                     <fragment content="Una volta caricata la rete neurale, tocca ">
                                         <attributes>
                                             <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="Scatta Foto">
                                         <attributes>
                                             <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
                                         <string key="content"> per classificare una pillola. Cerca di scattare un'immagine chiara e centrata, considerando anche che la luce potrebbe influenzare il riconoscimento. Potrai vedere il risultato qui sopra.</string>
                                         <attributes>
                                             <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -230,7 +230,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Chiudi" id="jAV-xa-B0u">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="fnN-PO-6R9" kind="unwind" unwindAction="doneButtonPressed:" id="WSV-eJ-biM"/>
+                                <action selector="dismiss:" destination="ujP-am-vje" id="3Vv-0d-hGS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -239,7 +239,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ax-7c-gLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="fnN-PO-6R9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2030" y="530"/>
         </scene>
@@ -305,55 +304,51 @@
                                     <constraint firstAttribute="width" constant="250" id="yAo-Fn-kqr"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anA-aV-ONm">
-                                <rect key="frame" x="30" y="523" width="315" height="60"/>
-                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="kZ6-zs-99j"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Sovrascrivi Classificazione">
-                                    <color key="titleColor" red="0.56470588239999997" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="overrideButtonTapped:" destination="ftN-B9-MpX" eventType="touchUpInside" id="IyL-DK-JtM"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classification Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjz-Jv-vqf">
-                                <rect key="frame" x="29.5" y="281" width="315" height="23"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <rect key="frame" x="25" y="286" width="324.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4T-rV-MH7">
-                                <rect key="frame" x="30" y="314" width="315" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="25.5" y="317.5" width="324.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Riepilogo Classificazioni Qui" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="C9g-fY-6Bu">
-                                <rect key="frame" x="29.5" y="360" width="315" height="148"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="25" y="353.5" width="325" height="128.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA7-Sh-pGp">
+                                <rect key="frame" x="24.5" y="492" width="325" height="95"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="35I-Nl-ppn"/>
+                                </constraints>
+                                <string key="text">Tocca l'immagine per poter ingrandire la foto della pillola. Vengono inoltre mostrate le 5 migliori classificazioni e la data in cui è stata scattata la foto.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="anA-aV-ONm" firstAttribute="leading" secondItem="zUA-IW-eMq" secondAttribute="leading" constant="30" id="8RL-G5-frL"/>
-                            <constraint firstItem="C9g-fY-6Bu" firstAttribute="top" secondItem="I4T-rV-MH7" secondAttribute="bottom" constant="25" id="NF6-gn-SLB"/>
+                            <constraint firstItem="C9g-fY-6Bu" firstAttribute="top" secondItem="I4T-rV-MH7" secondAttribute="bottom" constant="15" id="NF6-gn-SLB"/>
                             <constraint firstItem="C9g-fY-6Bu" firstAttribute="width" secondItem="I4T-rV-MH7" secondAttribute="width" id="REN-WB-e10"/>
-                            <constraint firstItem="Bjz-Jv-vqf" firstAttribute="top" secondItem="xxN-rF-Amm" secondAttribute="bottom" constant="15" id="TLw-Z7-gZX"/>
+                            <constraint firstItem="Bjz-Jv-vqf" firstAttribute="top" secondItem="xxN-rF-Amm" secondAttribute="bottom" constant="20" id="TLw-Z7-gZX"/>
+                            <constraint firstItem="OA7-Sh-pGp" firstAttribute="centerX" secondItem="zUA-IW-eMq" secondAttribute="centerX" id="X91-n9-V5I"/>
+                            <constraint firstItem="zUA-IW-eMq" firstAttribute="bottom" secondItem="OA7-Sh-pGp" secondAttribute="bottom" constant="16" id="YRQ-bQ-ImI"/>
                             <constraint firstItem="Bjz-Jv-vqf" firstAttribute="centerX" secondItem="xxN-rF-Amm" secondAttribute="centerX" id="akr-w6-fXT"/>
-                            <constraint firstItem="anA-aV-ONm" firstAttribute="top" secondItem="C9g-fY-6Bu" secondAttribute="bottom" constant="15" id="b6Y-nF-rDA"/>
-                            <constraint firstItem="zUA-IW-eMq" firstAttribute="trailing" secondItem="anA-aV-ONm" secondAttribute="trailing" constant="30" id="ckV-Sd-pBF"/>
-                            <constraint firstItem="I4T-rV-MH7" firstAttribute="top" secondItem="Bjz-Jv-vqf" secondAttribute="bottom" constant="10" id="dT6-il-7so"/>
-                            <constraint firstItem="zUA-IW-eMq" firstAttribute="bottom" secondItem="anA-aV-ONm" secondAttribute="bottom" constant="20" id="gGl-WL-mqn"/>
-                            <constraint firstItem="Bjz-Jv-vqf" firstAttribute="width" secondItem="anA-aV-ONm" secondAttribute="width" id="gqu-al-7Hg"/>
+                            <constraint firstItem="I4T-rV-MH7" firstAttribute="top" secondItem="Bjz-Jv-vqf" secondAttribute="bottom" constant="5" id="dT6-il-7so"/>
+                            <constraint firstItem="Bjz-Jv-vqf" firstAttribute="leading" secondItem="zUA-IW-eMq" secondAttribute="leading" constant="25" id="ehu-hY-T5j"/>
                             <constraint firstItem="I4T-rV-MH7" firstAttribute="centerX" secondItem="zUA-IW-eMq" secondAttribute="centerX" id="hxi-tx-pal"/>
                             <constraint firstItem="xxN-rF-Amm" firstAttribute="centerX" secondItem="zUA-IW-eMq" secondAttribute="centerX" id="hyq-la-spJ"/>
                             <constraint firstItem="C9g-fY-6Bu" firstAttribute="centerX" secondItem="zUA-IW-eMq" secondAttribute="centerX" id="ilh-Io-C7E"/>
                             <constraint firstItem="xxN-rF-Amm" firstAttribute="top" secondItem="zUA-IW-eMq" secondAttribute="top" constant="16" id="jK1-LO-yO9"/>
+                            <constraint firstItem="OA7-Sh-pGp" firstAttribute="top" secondItem="C9g-fY-6Bu" secondAttribute="bottom" constant="10" id="od0-dp-D10"/>
+                            <constraint firstItem="OA7-Sh-pGp" firstAttribute="width" secondItem="C9g-fY-6Bu" secondAttribute="width" id="pvb-6j-Iyt"/>
                             <constraint firstItem="I4T-rV-MH7" firstAttribute="width" secondItem="Bjz-Jv-vqf" secondAttribute="width" id="zhH-Yr-O68"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zUA-IW-eMq"/>
@@ -363,13 +358,12 @@
                         <outlet property="dateLabel" destination="I4T-rV-MH7" id="z2H-HL-fN5"/>
                         <outlet property="imageView" destination="xxN-rF-Amm" id="jrD-xO-t1P"/>
                         <outlet property="infoTextView" destination="C9g-fY-6Bu" id="THP-j9-O3j"/>
-                        <outlet property="overrideButton" destination="anA-aV-ONm" id="HKA-fB-Jek"/>
                         <segue destination="xpd-ED-XTo" kind="show" identifier="ImageViewerFromDetailsSegue" id="3sK-n7-VZu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3g-9t-g4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2806" y="529"/>
+            <point key="canvasLocation" x="2805.5999999999999" y="528.48575712143929"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7RK-JF-I1V">
