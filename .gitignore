@@ -8,6 +8,7 @@ Example\ Photos/
 *.jpg
 *.jpeg
 *.png
+Icon*
 
 ## Build generated
 build/
