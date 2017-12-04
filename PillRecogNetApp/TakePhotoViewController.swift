@@ -51,6 +51,7 @@ class TakePhotoViewController: UIViewController {
 		
 		self.title = "Riconoscimento"
 		
+		// UI initial setup
 		self.navigationController?.navigationBar.barStyle = .black // To set status bar style
 		spinner.startAnimating()
 		bestMatchLabel.text = nil
@@ -59,9 +60,11 @@ class TakePhotoViewController: UIViewController {
 		takePictureButton.layer.cornerRadius = 10.0
 		takePictureButton.isEnabled = false
 		
+		// Allows the thumb to be tapped to show the original image
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showTakenPhoto))
 		thumbnailImageView.addGestureRecognizer(tapRecognizer)
 		
+		// Check Metal Performance Shaders support for current device
 		device = MTLCreateSystemDefaultDevice()
 		guard MPSSupportsMTLDevice(device) else {
 			self.present(UIAlertController.errorAlertWith(message: "Il dispositivo in uso non soddisfa i requisiti necessari per l'utilizzo dell'applicazione."), animated: true)
@@ -73,6 +76,7 @@ class TakePhotoViewController: UIViewController {
 		textureLoader = MTKTextureLoader(device: device)
 		
 		DispatchQueue.global().async {
+			// Start neural network loading
 			self.network = PillRecogNet(device: self.device)
 			
 			DispatchQueue.main.async {
@@ -102,7 +106,6 @@ class TakePhotoViewController: UIViewController {
 	}
 
 	@IBAction func takePhotoPressed(_ sender: UIButton) {
-//		predictExampleImage()
 		presentImagePicker()
 	}
 	
@@ -121,6 +124,8 @@ class TakePhotoViewController: UIViewController {
 }
 
 private extension TakePhotoViewController {
+	
+	// Changes button tintColor accordingly to its state
 	func buttonStateChanged() {
 		if takePictureButton.state == .disabled {
 			takePictureButton.tintColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
@@ -130,6 +135,7 @@ private extension TakePhotoViewController {
 		takePictureButton.setNeedsDisplay()
 	}
 	
+	// Updates UI to provide feedback to the user
 	func updateUIAppearance(message: String?, blocking: Bool) {
 		statusLabel.text = message
 		statusLabel.isHidden = (statusLabel.text == nil)
@@ -143,13 +149,13 @@ private extension TakePhotoViewController {
 		buttonStateChanged()
 	}
 	
+	// Checks the authorization the user gave to the app to use the camera
 	func checkCameraAuthStatus(onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
 		guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
 			onFailure()
 			return
 		}
-		
-		let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+		let authStatus = AVCaptureDevice.authorizationStatus(for: .video) // .video is used meaning the camera
 		
 		switch (authStatus) {
 		case .authorized:
@@ -167,11 +173,13 @@ private extension TakePhotoViewController {
 		}
 	}
 	
+	// Presents camera picker controller to take a picture
 	func presentImagePicker() {
 		checkCameraAuthStatus(onSuccess: {
 			let cameraPicker = UIImagePickerController()
 			cameraPicker.delegate = self
 			cameraPicker.sourceType = UIImagePickerControllerSourceType.camera
+			// Camera view is zoomed so that the images can be safely cropped later
 			cameraPicker.cameraViewTransform = CGAffineTransform(scaleX: 2, y: 2)
 			self.present(cameraPicker, animated: true, completion: nil)
 		}, onFailure: {
@@ -179,6 +187,7 @@ private extension TakePhotoViewController {
 		})
 	}
 	
+	// Updates the UI to show classification results
 	func show(classifications: [PillMatch], originalPhoto: UIImage) {
 		print(classifications)
 		dateLabel.text = dateFormatter.string(from: Date())
@@ -198,6 +207,7 @@ private extension TakePhotoViewController {
 		originalPhotoData = UIImageJPEGRepresentation(originalPhoto, 1.0) as NSData?
 	}
 	
+	// Helper function to create a thumb from the original images
 	func prepareThumbnailFrom(image: UIImage) -> UIImage? {
 		let size = CGSize(width: 250.0, height: 250.0)
 		let scale: CGFloat = 0.0
@@ -210,6 +220,7 @@ private extension TakePhotoViewController {
 	}
 }
 
+// Camera Picker Controller methods
 extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -223,6 +234,7 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 		var photoTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
 		photoTaken = photoTaken.fixOrientation()
 		
+		// Crop a squared image from the center of the original one
 		// TODO: Avoid hard numbers to support smaller resolutions from older devices
 		let imageCenter = CGPoint(x: photoTaken.size.width / 2, y: photoTaken.size.height / 2)
 		let squareRect = CGRect(x: imageCenter.x - 3024.0/4.0, y: imageCenter.y - 3024.0/4.0, width: 3024.0/2.0, height: 3024.0/2.0)
@@ -231,28 +243,31 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 			photoTaken = UIImage(cgImage: cgImg, scale: 0.0, orientation: .up)
 		}
 		
+		// Get the images as Core Graphics or Core Image image to prevent possible nil values
 		var coreGraphicPhoto = photoTaken.cgImage
 		if coreGraphicPhoto == nil {
 			var coreImagePhoto = photoTaken.ciImage
 			if coreImagePhoto == nil {
 				coreImagePhoto = CIImage(image: photoTaken)
 			}
-			
 			let coreImageContext = CIContext.init(mtlDevice: device)
 			coreGraphicPhoto = coreImageContext.createCGImage(coreImagePhoto!, from: coreImagePhoto!.extent)
 		}
 		
 		do {
+			// Create a Metal texture from the image to transform it in an MPSImage
 			let texture = try textureLoader.newTexture(cgImage: coreGraphicPhoto!, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
 			
 			let thumb = prepareThumbnailFrom(image: photoTaken)
 			thumbnailImageView.image = thumb
 			
 			DispatchQueue.global().async {
+				// Feed the MPSImage into the neural network for classification
+				// featureChannels = 3 because the network expects RGB images (alpha channel is discarded)
 				let metalImage = MPSImage(texture: texture, featureChannels: 3)
 				let predictions = self.network.classify(pill: metalImage)
 				
-				
+				// Asynchronously handle classification results
 				DispatchQueue.main.async {
 					self.save(predictions: predictions, for: photoTaken, thumb: thumb)
 					self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
@@ -270,6 +285,7 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 
 extension TakePhotoViewController {
 	
+	// Saves the classification to Core Data
 	func save(predictions: [PillMatch], for image: UIImage, thumb: UIImage?) {
 		let context = coreDataStack.childContext
 		

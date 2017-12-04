@@ -29,6 +29,7 @@ class DataListTableViewController: UITableViewController {
 		return formatter
 	}()
 	
+	// Initialize controller to retrieve classifications from Core Data
 	private lazy var frc: NSFetchedResultsController<Classification> = {
 		let fetchRequest: NSFetchRequest<Classification> = NSFetchRequest(entityName: "Classification")
 		fetchRequest.fetchBatchSize = 20
@@ -83,6 +84,7 @@ class DataListTableViewController: UITableViewController {
 
 }
 
+// TableView management code
 extension DataListTableViewController {
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -123,6 +125,7 @@ extension DataListTableViewController {
 	}
 }
 
+// Fetched Results Controller delegate methods
 extension DataListTableViewController: NSFetchedResultsControllerDelegate {
 	
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

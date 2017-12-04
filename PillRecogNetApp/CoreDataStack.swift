@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+// Custom closures to execute code when saving
 public typealias CoreDataStackSaveSuccessBlock = (() -> Void)?
 public typealias CoreDataStackSaveErrorBlock = ((Error) -> Void)?
 
@@ -27,10 +28,12 @@ class CoreDataStack {
 		return container
 	}()
 	
+	// Intended to be used for retrieving the data
 	lazy var mainContext: NSManagedObjectContext = {
 		return self.storeContainer.viewContext
 	}()
 	
+	// Intende to be used for writing and updating the database
 	lazy var childContext: NSManagedObjectContext = {
 		let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 		context.parent = self.mainContext

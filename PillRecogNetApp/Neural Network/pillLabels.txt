@@ -1,12 +1,5 @@
-0|Algix
-1|Celebrex
-2|Cotareg
-3|Deltacortene
-4|Diamox
-5|Dicloreum
-6|Fortilase
-7|Legalon
-8|Moduretic
-9|Neurontin
-10|Pipram
-11|Prisma
+0|Class1
+1|Class2
+...
+...
+n|Class(n+1)

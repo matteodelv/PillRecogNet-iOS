@@ -41,6 +41,7 @@ class DetailsViewController: UIViewController {
 		
 		self.title = "Dettagli"
 		
+		// Allows imageView to be tapped and to show original image
 		imageView.isUserInteractionEnabled = true
 		let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
 		imageView.addGestureRecognizer(tapRecognizer)
@@ -52,6 +53,7 @@ class DetailsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 	
+	// Shows all the information about a specific classification
 	func populateUI() {
 		let sortDescriptor = NSSortDescriptor(key: #keyPath(Match.probability), ascending: false)
 		let sortedMatches = classification.matches?.sortedArray(using: [sortDescriptor]) as! [Match]

@@ -13,13 +13,16 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+	// Initialize Core Data stack to save classifications
 	lazy var coreDataStack = CoreDataStack(modelName: "PillRecogNetApp")
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
+		// Initialize main context
 		_ = coreDataStack.mainContext
 		
+		// Propagate Core Data stack to the controllers
 		guard let navigationController = window!.rootViewController as? UINavigationController, let takePhotoController = navigationController.topViewController as? TakePhotoViewController else {
 			fatalError("Impossibile propagare lo stack Core Data al view controller principale.!")
 		}
