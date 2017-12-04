@@ -1,0 +1,2 @@
+## Trained Parameters
+Please, refer to [Part 1](https://github.com/matteodelv/PillRecogNet) of the project to learn how to convert and extract binary files to be used as parameters with Metal Performance Shaders.
