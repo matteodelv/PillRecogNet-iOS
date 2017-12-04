@@ -172,38 +172,12 @@ private extension TakePhotoViewController {
 			let cameraPicker = UIImagePickerController()
 			cameraPicker.delegate = self
 			cameraPicker.sourceType = UIImagePickerControllerSourceType.camera
-			cameraPicker.allowsEditing = true
+			cameraPicker.cameraViewTransform = CGAffineTransform(scaleX: 2, y: 2)
 			self.present(cameraPicker, animated: true, completion: nil)
 		}, onFailure: {
 			self.updateUIAppearance(message: "Non è possibile utilizzare la fotocamera. Controllare che sia stata concessa l'autorizzazione all'applicazione.", blocking: false)
 		})
 	}
-	
-//	func predictExampleImage() {
-//		updateUIAppearance(message: "Elaborando...", blocking: true)
-//
-//		if let imageURL = Bundle.main.url(forResource: "neurontin-6367", withExtension: "JPG"), let photoTaken = UIImage(named: "neurontin-6367.JPG") {
-//			do {
-//				let texture = try textureLoader.newTexture(URL: imageURL, options: [MTKTextureLoader.Option.SRGB: NSNumber(value: false)])
-//
-//				thumbnailImageView.image = prepareThumbnailFrom(image: photoTaken)
-//
-//				DispatchQueue.global().async {
-//					let metalImage = MPSImage(texture: texture, featureChannels: 3)
-//					let predictions = self.network.classify(pill: metalImage)
-//
-//					DispatchQueue.main.async {
-//						// Saving missing because it's just an example function
-//						self.updateUIAppearance(message: "Rete Neurale Pronta!", blocking: false)
-//						self.show(classifications: predictions, originalPhoto: photoTaken)
-//					}
-//				}
-//			} catch {
-//				print(error)
-//				updateUIAppearance(message: "Errore nella classificazione. Riprovare", blocking: false)
-//			}
-//		}
-//	}
 	
 	func show(classifications: [PillMatch], originalPhoto: UIImage) {
 		print(classifications)
@@ -246,7 +220,16 @@ extension TakePhotoViewController: UIImagePickerControllerDelegate, UINavigation
 		
 		updateUIAppearance(message: nil, blocking: true)
 		
-		let photoTaken = info[UIImagePickerControllerEditedImage] as! UIImage
+		var photoTaken = info[UIImagePickerControllerOriginalImage] as! UIImage
+		photoTaken = photoTaken.fixOrientation()
+		
+		// TODO: Avoid hard numbers to support smaller resolutions from older devices
+		let imageCenter = CGPoint(x: photoTaken.size.width / 2, y: photoTaken.size.height / 2)
+		let squareRect = CGRect(x: imageCenter.x - 3024.0/4.0, y: imageCenter.y - 3024.0/4.0, width: 3024.0/2.0, height: 3024.0/2.0)
+		
+		if let cgImg = photoTaken.cgImage?.cropping(to: squareRect) {
+			photoTaken = UIImage(cgImage: cgImg, scale: 0.0, orientation: .up)
+		}
 		
 		var coreGraphicPhoto = photoTaken.cgImage
 		if coreGraphicPhoto == nil {

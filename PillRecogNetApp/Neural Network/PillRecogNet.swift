@@ -109,7 +109,7 @@ public class PillRecogNet {
 	let device: MTLDevice
 	let commandQueue: MTLCommandQueue
 	
-	let bgrPipeline: MTLComputePipelineState
+	let rgbPipeline: MTLComputePipelineState
 	
 	let outputImage: MPSImage
 	
@@ -178,7 +178,7 @@ public class PillRecogNet {
 		do {
 			let customFunctionsLibrary = device.makeDefaultLibrary()!
 			let vggPreprocessing = customFunctionsLibrary.makeFunction(name: "removeRGBMean")
-			bgrPipeline = try device.makeComputePipelineState(function: vggPreprocessing!)
+			rgbPipeline = try device.makeComputePipelineState(function: vggPreprocessing!)
 		} catch {
 			fatalError("Errore durante l'inizializzazione del kernel per il preprocessing!")
 		}
@@ -226,7 +226,7 @@ public class PillRecogNet {
 				let preprocessedImage = MPSTemporaryImage(commandBuffer: comBuf, imageDescriptor: inputImgDesc)
 				
 				let encoder = comBuf.makeComputeCommandEncoder()
-				encoder?.setComputePipelineState(bgrPipeline)
+				encoder?.setComputePipelineState(rgbPipeline)
 				encoder?.setTexture(scaledImage.texture, index: 0)
 				encoder?.setTexture(preprocessedImage.texture, index: 1)
 
