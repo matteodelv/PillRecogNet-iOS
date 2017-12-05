@@ -20,7 +20,7 @@ The application can easily be used with a custom dataset, provided that the neur
 ### Requirements
 * Xcode 9.0+
 * iOS 10.0+
-* A real capable[^1] device (Metal Performance Shaders won't run/work on the Simulator)
+* A real capable[1] device (Metal Performance Shaders won't run/work on the Simulator)
 
 
-[^1]: As described in Metal Performance Shaders documentation, to run a convolutional neural network on the GPU requires devices belonging to these categories: ```GPU Family 2 v3```, ```GPU Family 3 v2```, ```GPU Family 4 v1```, or superior, which means devices with at least the Apple A8 chip (iPhone 6/6+ or later, iPad Air 2 or later, iPad mini 4, iPod touch 6G).
+[1]: As described in Metal Performance Shaders documentation, to run a convolutional neural network on the GPU requires devices belonging to these categories: ```GPU Family 2 v3```, ```GPU Family 3 v2```, ```GPU Family 4 v1```, or superior, which means devices with at least the Apple A8 chip (iPhone 6/6+ or later, iPad Air 2 or later, iPad mini 4, iPod touch 6G).
