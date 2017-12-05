@@ -8,10 +8,12 @@
 
 import Foundation
 
+// Convenient type to manage a classification with its probability
 public typealias PillMatch = (label: String, probability: Float)
 
 public class PillLabelManager {
 	
+	// Change this with the number of total classes the network has been trained on
 	private static let labelCount = 12
 	private var labels = [String](repeating: "", count: labelCount)
 	
@@ -21,6 +23,10 @@ public class PillLabelManager {
 				let content = try String(contentsOfFile: labelFile, encoding: .utf8)
 				let rows = content.components(separatedBy: NSCharacterSet.newlines)
 				
+				// Generate classification labels from pillLabels.txt content
+				// Each row should be in the format "index|label", with index starting from 0
+				// The correspondence between index and label MUST be the same returned
+				// when training or evaluating the network, to avoid mismatches
 				for (i, row) in rows.enumerated() {
 					if i < PillLabelManager.labelCount {
 						self.labels[i] = row.components(separatedBy: "|")[1]
@@ -32,6 +38,7 @@ public class PillLabelManager {
 		}
 	}
 	
+	// Returns an array containing the best 5 classifications sorted by higher probability
 	func best5Matches(probabilities: [Float]) -> [PillMatch] {
 		precondition(probabilities.count == PillLabelManager.labelCount)
 		
