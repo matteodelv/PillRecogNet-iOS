@@ -172,7 +172,7 @@ public class PillRecogNet {
 	let conv_block5ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 14, height: 14, featureChannels: 512)
 	let pool_block5ImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 7, height: 7, featureChannels: 512)
 	let denseImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 1, height: 1, featureChannels: 512)
-	let outputImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 1, height: 1, featureChannels: 12)
+	let outputImgDesc = MPSImageDescriptor(channelFormat: .float16, width: 1, height: 1, featureChannels: PillLabelManager.classesCount)
 	
 	var imageDescriptors:[MPSImageDescriptor] {
 		get {
@@ -233,7 +233,7 @@ public class PillRecogNet {
 		// Initialize fully connected layers inside sequential_1
 		// dense_2 doesn't use relu filter since softmax will be used
 		dense_1 = PillFullyConnected(device: device, kernelSize: 7, inputDepth: 512, outputDepth: 512, parametersName: "fc1", filter: relu)
-		dense_2 = PillFullyConnected(device: device, kernelSize: 1, inputDepth: 512, outputDepth: 12, parametersName: "fc2", filter: nil)
+		dense_2 = PillFullyConnected(device: device, kernelSize: 1, inputDepth: 512, outputDepth: UInt(PillLabelManager.classesCount), parametersName: "fc2", filter: nil)
 		
 		for desc in self.imageDescriptors {
 			desc.storageMode = .private

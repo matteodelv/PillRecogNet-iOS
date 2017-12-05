@@ -14,8 +14,8 @@ public typealias PillMatch = (label: String, probability: Float)
 public class PillLabelManager {
 	
 	// Change this with the number of total classes the network has been trained on
-	private static let labelCount = 12
-	private var labels = [String](repeating: "", count: labelCount)
+	static let classesCount = 12
+	private var labels = [String](repeating: "", count: classesCount)
 	
 	init() {
 		if let labelFile = Bundle.main.path(forResource: "pillLabels", ofType: "txt") {
@@ -28,7 +28,7 @@ public class PillLabelManager {
 				// The correspondence between index and label MUST be the same returned
 				// when training or evaluating the network, to avoid mismatches
 				for (i, row) in rows.enumerated() {
-					if i < PillLabelManager.labelCount {
+					if i < PillLabelManager.classesCount {
 						self.labels[i] = row.components(separatedBy: "|")[1]
 					}
 				}
@@ -40,9 +40,9 @@ public class PillLabelManager {
 	
 	// Returns an array containing the best 5 classifications sorted by higher probability
 	func best5Matches(probabilities: [Float]) -> [PillMatch] {
-		precondition(probabilities.count == PillLabelManager.labelCount)
+		precondition(probabilities.count == PillLabelManager.classesCount)
 		
-		let zippedSequence = zip(0...PillLabelManager.labelCount, probabilities)
+		let zippedSequence = zip(0...PillLabelManager.classesCount, probabilities)
 		let sorted = zippedSequence.sorted { (a: (index: Int, probability: Float), b: (index: Int, probability: Float)) -> Bool in
 			a.probability > b.probability
 		}
