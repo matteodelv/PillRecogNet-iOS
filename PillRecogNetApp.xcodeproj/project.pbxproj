@@ -59,7 +59,6 @@
 		958917201FD8045800BB574F /* fc1_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 958917021FD8045800BB574F /* fc1_weights.bin */; };
 		958917221FD847A500BB574F /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958917211FD847A500BB574F /* CustomCells.swift */; };
 		958917241FD847BE00BB574F /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958917231FD847BE00BB574F /* ReminderTableViewController.swift */; };
-		958917261FD8686D00BB574F /* UNUserNotificationCenter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958917251FD8686D00BB574F /* UNUserNotificationCenter+Extensions.swift */; };
 		95B9D7301FAF570900300037 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */; };
 		95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */; };
 		95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */; };
@@ -121,7 +120,6 @@
 		958917021FD8045800BB574F /* fc1_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = fc1_weights.bin; sourceTree = "<group>"; };
 		958917211FD847A500BB574F /* CustomCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		958917231FD847BE00BB574F /* ReminderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewController.swift; sourceTree = "<group>"; };
-		958917251FD8686D00BB574F /* UNUserNotificationCenter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter+Extensions.swift"; sourceTree = "<group>"; };
 		95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillRecogNet.swift; sourceTree = "<group>"; };
 		95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPSImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 		957C65861F9612C700A2F972 /* PillRecogNetApp */ = {
 			isa = PBXGroup;
 			children = (
-				958917251FD8686D00BB574F /* UNUserNotificationCenter+Extensions.swift */,
 				953ECE851FACBB2F00278093 /* Model */,
 				95C1105F1FAB8A6000FEBAD1 /* Neural Network */,
 				957C65871F9612C700A2F972 /* AppDelegate.swift */,
@@ -362,7 +359,6 @@
 				957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */,
 				95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */,
 				9515AC481FBB0E6500CADCDD /* DetailsViewController.swift in Sources */,
-				958917261FD8686D00BB574F /* UNUserNotificationCenter+Extensions.swift in Sources */,
 				957C65881F9612C700A2F972 /* AppDelegate.swift in Sources */,
 				953ECE8E1FACBBBB00278093 /* Classification+CoreDataProperties.swift in Sources */,
 				953ECE901FACBBBB00278093 /* Photo+CoreDataProperties.swift in Sources */,
@@ -507,7 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SP3RMALFFA;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PillRecogNetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -523,7 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SP3RMALFFA;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PillRecogNetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
