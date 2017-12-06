@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JTK-vC-IgU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JTK-vC-IgU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -305,41 +305,61 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classification Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjz-Jv-vqf">
-                                <rect key="frame" x="25" y="286" width="324.5" height="26.5"/>
+                                <rect key="frame" x="25" y="281" width="324.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4T-rV-MH7">
-                                <rect key="frame" x="25.5" y="317.5" width="324.5" height="21"/>
+                                <rect key="frame" x="25.5" y="312.5" width="324.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Riepilogo Classificazioni Qui" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="C9g-fY-6Bu">
-                                <rect key="frame" x="25" y="353.5" width="325" height="128.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <rect key="frame" x="25" y="341.5" width="325" height="112.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA7-Sh-pGp">
-                                <rect key="frame" x="24.5" y="492" width="325" height="95"/>
+                                <rect key="frame" x="24.5" y="464" width="325" height="85"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="35I-Nl-ppn"/>
+                                    <constraint firstAttribute="height" constant="85" id="35I-Nl-ppn"/>
                                 </constraints>
                                 <string key="text">Tocca l'immagine per poter ingrandire la foto della pillola. Vengono inoltre mostrate le 5 migliori classificazioni e la data in cui è stata scattata la foto.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqJ-QX-t57">
+                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Invia via Mail" id="OY5-3Z-4jA">
+                                        <connections>
+                                            <action selector="sendByEmailWithSender:" destination="ftN-B9-MpX" id="52X-rp-Fz7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c1L-O9-TiE"/>
+                                    <barButtonItem title="Imposta Promemoria" id="cJd-px-6IN">
+                                        <connections>
+                                            <action selector="setReminderWithSender:" destination="ftN-B9-MpX" id="mpk-Y8-Jf5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.31372549020000001" green="0.67843137249999996" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="C9g-fY-6Bu" firstAttribute="top" secondItem="I4T-rV-MH7" secondAttribute="bottom" constant="15" id="NF6-gn-SLB"/>
+                            <constraint firstItem="PqJ-QX-t57" firstAttribute="bottom" secondItem="zUA-IW-eMq" secondAttribute="bottom" id="5oI-yL-bXE"/>
+                            <constraint firstItem="C9g-fY-6Bu" firstAttribute="top" secondItem="I4T-rV-MH7" secondAttribute="bottom" constant="8" id="NF6-gn-SLB"/>
+                            <constraint firstItem="PqJ-QX-t57" firstAttribute="leading" secondItem="zUA-IW-eMq" secondAttribute="leading" id="Qex-OY-d26"/>
                             <constraint firstItem="C9g-fY-6Bu" firstAttribute="width" secondItem="I4T-rV-MH7" secondAttribute="width" id="REN-WB-e10"/>
-                            <constraint firstItem="Bjz-Jv-vqf" firstAttribute="top" secondItem="xxN-rF-Amm" secondAttribute="bottom" constant="20" id="TLw-Z7-gZX"/>
+                            <constraint firstItem="Bjz-Jv-vqf" firstAttribute="top" secondItem="xxN-rF-Amm" secondAttribute="bottom" constant="15" id="TLw-Z7-gZX"/>
+                            <constraint firstItem="PqJ-QX-t57" firstAttribute="trailing" secondItem="zUA-IW-eMq" secondAttribute="trailing" id="WoC-KA-wZu"/>
                             <constraint firstItem="OA7-Sh-pGp" firstAttribute="centerX" secondItem="zUA-IW-eMq" secondAttribute="centerX" id="X91-n9-V5I"/>
-                            <constraint firstItem="zUA-IW-eMq" firstAttribute="bottom" secondItem="OA7-Sh-pGp" secondAttribute="bottom" constant="16" id="YRQ-bQ-ImI"/>
+                            <constraint firstItem="PqJ-QX-t57" firstAttribute="top" secondItem="OA7-Sh-pGp" secondAttribute="bottom" constant="10" id="YRQ-bQ-ImI"/>
                             <constraint firstItem="Bjz-Jv-vqf" firstAttribute="centerX" secondItem="xxN-rF-Amm" secondAttribute="centerX" id="akr-w6-fXT"/>
                             <constraint firstItem="I4T-rV-MH7" firstAttribute="top" secondItem="Bjz-Jv-vqf" secondAttribute="bottom" constant="5" id="dT6-il-7so"/>
                             <constraint firstItem="Bjz-Jv-vqf" firstAttribute="leading" secondItem="zUA-IW-eMq" secondAttribute="leading" constant="25" id="ehu-hY-T5j"/>
@@ -353,6 +373,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zUA-IW-eMq"/>
                     </view>
+                    <toolbarItems/>
                     <connections>
                         <outlet property="classificationLabel" destination="Bjz-Jv-vqf" id="ys6-aw-8XP"/>
                         <outlet property="dateLabel" destination="I4T-rV-MH7" id="z2H-HL-fN5"/>
@@ -408,6 +429,11 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="kzt-ft-ihF">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.31372549020000001" green="0.67843137249999996" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.31372549020000001" green="0.67843137249999996" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="ujP-am-vje" kind="relationship" relationship="rootViewController" id="YIH-q3-TTq"/>
                     </connections>

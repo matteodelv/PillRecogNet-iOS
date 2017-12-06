@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
 class DetailsViewController: UIViewController {
 	
@@ -87,5 +88,54 @@ class DetailsViewController: UIViewController {
 			destination.pillImageData = classification.photo?.originalPhoto
 		}
 	}
+	
+	// Allows to send via email the results of a classification
+	@IBAction func sendByEmail(sender: UIBarButtonItem) {
+		let sortDescriptor = NSSortDescriptor(key: #keyPath(Match.probability), ascending: false)
+		let sortedMatches = classification.matches?.sortedArray(using: [sortDescriptor]) as! [Match]
+		
+		let firstProbNumber = NSNumber(value: sortedMatches[0].probability)
+		
+		var message = "L'immagine allegata è stata riconosciuta come \"\(sortedMatches[0].label ?? "")\", con una probabilità pari al \(numberFormatter.string(from: firstProbNumber) ?? "0.0")\n"
+		
+		if let date = classification.date as Date? {
+			message += "La classificazione è stata effettuata il \(dateFormatter.string(from: date))\n\n"
+		}
+		message += "In caso ci siano problemi con il riconoscimento, di seguito sono mostrate le possibili alternative che hanno registrato una probabilità maggiore:\n"
+		
+		let remaining = sortedMatches.dropFirst()
+		for (i, classif) in remaining.enumerated() {
+			let label = classif.label
+			let prob = numberFormatter.string(from: NSNumber(value: classif.probability))
+			message += "\(i+1)) \(label ?? "") (\(prob ?? "0.0"))\n"
+		}
+		message += "\n"
+		
+		if MFMailComposeViewController.canSendMail() {
+			let mailVC = MFMailComposeViewController()
+			mailVC.mailComposeDelegate = self
+			mailVC.setMessageBody(message, isHTML: false)
+			mailVC.setSubject("Risultato classificazione medicinale")
+			if let thumbData = classification.thumbnail as Data? {
+				mailVC.addAttachmentData(thumbData, mimeType: "image/jpeg", fileName: "foto")
+			}
+			present(mailVC, animated: true, completion: nil)
+		} else {
+			let alert = UIAlertController.errorAlertWith(message: "Impossibile inviare la mail. Controlla che almeno un account email sia stato configurato.")
+			present(alert, animated: true, completion: nil)
+		}
+	}
+	
+	@IBAction func setReminder(sender: UIBarButtonItem) {
+		print(#function)
+	}
 
+}
+
+// Mail Compose VC delegate
+extension DetailsViewController: MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
+	
+	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+		dismiss(animated: true, completion: nil)
+	}
 }
