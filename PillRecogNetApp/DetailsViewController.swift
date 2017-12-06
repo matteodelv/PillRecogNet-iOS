@@ -15,10 +15,10 @@ class DetailsViewController: UIViewController {
 	var coreDataStack: CoreDataStack!
 	var classification: Classification!
 	
-	@IBOutlet var imageView: UIImageView!
-	@IBOutlet var classificationLabel: UILabel!
-	@IBOutlet var dateLabel: UILabel!
-	@IBOutlet var infoTextView: UITextView!
+	@IBOutlet weak var imageView: UIImageView!
+	@IBOutlet weak var classificationLabel: UILabel!
+	@IBOutlet weak var dateLabel: UILabel!
+	@IBOutlet weak var infoTextView: UITextView!
 	
 	lazy var dateFormatter: DateFormatter = {
 		let formatter = DateFormatter()

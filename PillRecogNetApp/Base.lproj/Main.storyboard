@@ -343,6 +343,7 @@
                                     <barButtonItem title="Imposta Promemoria" id="cJd-px-6IN">
                                         <connections>
                                             <action selector="setReminderWithSender:" destination="ftN-B9-MpX" id="mpk-Y8-Jf5"/>
+                                            <segue destination="7XY-OW-8JQ" kind="show" id="JQG-zS-u3h"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -385,6 +386,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3g-9t-g4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2805.5999999999999" y="528.48575712143929"/>
+        </scene>
+        <!--Imposta Promemoria-->
+        <scene sceneID="NuD-gc-lgY">
+            <objects>
+                <tableViewController title="Imposta Promemoria" id="7XY-OW-8JQ" customClass="ReminderTableViewController" customModule="PillRecogNetApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="r9n-hx-Z8F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection footerTitle="Nel caso in cui il promemoria sia giornaliero, si terrà conto solo dell'orario." id="3hh-sq-e3D">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateHourCellIdentifier" textLabel="QyE-gt-yvn" detailTextLabel="bxX-Zr-pP5" style="IBUITableViewCellStyleValue1" id="du4-w5-tN0">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="du4-w5-tN0" id="0QK-wJ-jv7">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Data e Ora" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QyE-gt-yvn">
+                                                    <rect key="frame" x="16" y="12" width="82" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bxX-Zr-pP5">
+                                                    <rect key="frame" x="354.5" y="12" width="4.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RepeatingCellIdentifier" id="KKO-Av-Eeu" customClass="RepeatingCell" customModule="PillRecogNetApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KKO-Av-Eeu" id="nPn-mG-OUB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdf-7o-4WS">
+                                                    <rect key="frame" x="308" y="6" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giornaliero" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPL-Hp-4Hx">
+                                                    <rect key="frame" x="16" y="12" width="282" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qdf-7o-4WS" firstAttribute="centerY" secondItem="nPn-mG-OUB" secondAttribute="centerY" id="4yS-a7-lfO"/>
+                                                <constraint firstItem="dPL-Hp-4Hx" firstAttribute="centerY" secondItem="nPn-mG-OUB" secondAttribute="centerY" id="A0V-7z-HMc"/>
+                                                <constraint firstItem="qdf-7o-4WS" firstAttribute="leading" secondItem="dPL-Hp-4Hx" secondAttribute="trailing" constant="10" id="ISo-Dl-67S"/>
+                                                <constraint firstItem="dPL-Hp-4Hx" firstAttribute="leading" secondItem="nPn-mG-OUB" secondAttribute="leading" constant="16" id="bLH-SD-TUh"/>
+                                                <constraint firstAttribute="trailing" secondItem="qdf-7o-4WS" secondAttribute="trailing" constant="18" id="fCH-We-mXX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="repeatingSwitch" destination="qdf-7o-4WS" id="8hm-3N-Lo1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="No1-zN-CND">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DatePickerCellIdentifier" rowHeight="220" id="5G4-p5-nSl">
+                                        <rect key="frame" x="0.0" y="187" width="375" height="220"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5G4-p5-nSl" id="lne-1u-06s">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zC4-Zv-gGG">
+                                                    <rect key="frame" x="0.0" y="11" width="375" height="211"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="534267583.99781001">
+                                                        <!--2017-12-06 15:39:43 +0000-->
+                                                    </date>
+                                                    <connections>
+                                                        <action selector="datePickerValueChangedWithSender:" destination="7XY-OW-8JQ" eventType="valueChanged" id="wyJ-0n-mZJ"/>
+                                                    </connections>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zC4-Zv-gGG" firstAttribute="leading" secondItem="lne-1u-06s" secondAttribute="leading" id="JNE-aV-bjT"/>
+                                                <constraint firstAttribute="trailing" secondItem="zC4-Zv-gGG" secondAttribute="trailing" id="TYN-8K-cza"/>
+                                                <constraint firstItem="zC4-Zv-gGG" firstAttribute="top" secondItem="lne-1u-06s" secondAttribute="top" constant="11" id="itO-ng-TCL"/>
+                                                <constraint firstAttribute="bottom" secondItem="zC4-Zv-gGG" secondAttribute="bottom" constant="-2.5" id="z7Y-Xc-2kU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="7XY-OW-8JQ" id="RJF-My-9Xz"/>
+                            <outlet property="delegate" destination="7XY-OW-8JQ" id="4Dt-Q9-W9M"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="datePicker" destination="zC4-Zv-gGG" id="qP4-aS-2CD"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QgA-aU-38V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3589.5999999999999" y="850.52473763118451"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7RK-JF-I1V">

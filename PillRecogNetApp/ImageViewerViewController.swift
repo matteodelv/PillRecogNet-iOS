@@ -10,8 +10,8 @@ import UIKit
 
 class ImageViewerViewController: UIViewController, UIScrollViewDelegate {
 	
-	@IBOutlet var imageView: UIImageView!
-	@IBOutlet var scrollView: UIScrollView!
+	@IBOutlet weak var imageView: UIImageView!
+	@IBOutlet weak var scrollView: UIScrollView!
 	var pillImageData: NSData?
 
     override func viewDidLoad() {

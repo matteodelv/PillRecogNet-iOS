@@ -21,13 +21,13 @@ class TakePhotoViewController: UIViewController {
 	private var network: PillRecogNet!
 	private var originalPhotoData: NSData?
 	
-	@IBOutlet var takePictureButton: UIButton!
-	@IBOutlet var statusLabel: UILabel!
-	@IBOutlet var spinner: UIActivityIndicatorView!
-	@IBOutlet var thumbnailImageView: UIImageView!
-	@IBOutlet var bestMatchLabel: UILabel!
-	@IBOutlet var dateLabel: UILabel!
-	@IBOutlet var classificationsTextView: UITextView!
+	@IBOutlet weak var takePictureButton: UIButton!
+	@IBOutlet weak var statusLabel: UILabel!
+	@IBOutlet weak var spinner: UIActivityIndicatorView!
+	@IBOutlet weak var thumbnailImageView: UIImageView!
+	@IBOutlet weak var bestMatchLabel: UILabel!
+	@IBOutlet weak var dateLabel: UILabel!
+	@IBOutlet weak var classificationsTextView: UITextView!
 	
 	lazy var dateFormatter: DateFormatter = {
 		let formatter = DateFormatter()

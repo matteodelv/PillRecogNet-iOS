@@ -10,9 +10,9 @@ import UIKit
 
 class ClassificationTableViewCell: UITableViewCell {
 	
-	@IBOutlet var classificationLabel: UILabel!
-	@IBOutlet var dateLabel: UILabel!
-	@IBOutlet var thumbnailImageView: UIImageView!
+	@IBOutlet weak var classificationLabel: UILabel!
+	@IBOutlet weak var dateLabel: UILabel!
+	@IBOutlet weak var thumbnailImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
