@@ -343,7 +343,7 @@
                                     <barButtonItem title="Imposta Promemoria" id="cJd-px-6IN">
                                         <connections>
                                             <action selector="setReminderWithSender:" destination="ftN-B9-MpX" id="mpk-Y8-Jf5"/>
-                                            <segue destination="7XY-OW-8JQ" kind="show" id="JQG-zS-u3h"/>
+                                            <segue destination="7XY-OW-8JQ" kind="show" identifier="ReminderFromDetailsSegue" id="JQG-zS-u3h"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

@@ -57,6 +57,8 @@
 		9589171E1FD8045800BB574F /* conv11_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 958917001FD8045600BB574F /* conv11_weights.bin */; };
 		9589171F1FD8045800BB574F /* conv6_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 958917011FD8045600BB574F /* conv6_weights.bin */; };
 		958917201FD8045800BB574F /* fc1_weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = 958917021FD8045800BB574F /* fc1_weights.bin */; };
+		958917221FD847A500BB574F /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958917211FD847A500BB574F /* CustomCells.swift */; };
+		958917241FD847BE00BB574F /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958917231FD847BE00BB574F /* ReminderTableViewController.swift */; };
 		95B9D7301FAF570900300037 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */; };
 		95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */; };
 		95C110631FAC0A1300FEBAD1 /* MPSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */; };
@@ -116,6 +118,8 @@
 		958917001FD8045600BB574F /* conv11_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = conv11_weights.bin; sourceTree = "<group>"; };
 		958917011FD8045600BB574F /* conv6_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = conv6_weights.bin; sourceTree = "<group>"; };
 		958917021FD8045800BB574F /* fc1_weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = fc1_weights.bin; sourceTree = "<group>"; };
+		958917211FD847A500BB574F /* CustomCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
+		958917231FD847BE00BB574F /* ReminderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewController.swift; sourceTree = "<group>"; };
 		95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		95C110601FAB8A8900FEBAD1 /* PillRecogNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillRecogNet.swift; sourceTree = "<group>"; };
 		95C110621FAC0A1300FEBAD1 /* MPSImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPSImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 		953ECE851FACBB2F00278093 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				958917211FD847A500BB574F /* CustomCells.swift */,
 				9515AA931FB319A600CADCDD /* Match+CoreDataClass.swift */,
 				9515AA941FB319A600CADCDD /* Match+CoreDataProperties.swift */,
 				953ECE891FACBBBB00278093 /* Classification+CoreDataClass.swift */,
@@ -211,6 +216,7 @@
 				957C659C1F96168700A2F972 /* DataListTableViewController.swift */,
 				9515AC471FBB0E6500CADCDD /* DetailsViewController.swift */,
 				9515AC491FBB3DF000CADCDD /* ImageViewerViewController.swift */,
+				958917231FD847BE00BB574F /* ReminderTableViewController.swift */,
 				95B9D72F1FAF570900300037 /* UIAlertController+Extensions.swift */,
 				952A879A1FD5AD7800625889 /* UIImage+Extensions.swift */,
 				957C658B1F9612C700A2F972 /* Main.storyboard */,
@@ -348,6 +354,7 @@
 				952A879B1FD5AD7800625889 /* UIImage+Extensions.swift in Sources */,
 				9515AA951FB319A600CADCDD /* Match+CoreDataClass.swift in Sources */,
 				95B9D7301FAF570900300037 /* UIAlertController+Extensions.swift in Sources */,
+				958917221FD847A500BB574F /* CustomCells.swift in Sources */,
 				95C110611FAB8A8900FEBAD1 /* PillRecogNet.swift in Sources */,
 				957C658A1F9612C700A2F972 /* TakePhotoViewController.swift in Sources */,
 				95C110651FAC12CD00FEBAD1 /* PillLabelManager.swift in Sources */,
@@ -358,6 +365,7 @@
 				953ECE881FACBBA300278093 /* PillRecogNetApp.xcdatamodeld in Sources */,
 				957C659D1F96168700A2F972 /* DataListTableViewController.swift in Sources */,
 				951E526C1FAE181E00B53BF5 /* Preprocessing.metal in Sources */,
+				958917241FD847BE00BB574F /* ReminderTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

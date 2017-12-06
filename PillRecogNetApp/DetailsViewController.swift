@@ -87,6 +87,10 @@ class DetailsViewController: UIViewController {
 		if segue.identifier == "ImageViewerFromDetailsSegue", let destination = segue.destination as? ImageViewerViewController {
 			destination.pillImageData = classification.photo?.originalPhoto
 		}
+		else if segue.identifier == "ReminderFromDetailsSegue", let destination = segue.destination as? ReminderTableViewController {
+			destination.currentClassification = classification
+			
+		}
 	}
 	
 	// Allows to send via email the results of a classification
